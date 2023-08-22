@@ -150,3 +150,4 @@ layout_mode = 2
 text = "5"
 
 [node name="StartTimer" type="Timer" parent="."]
+wait_time = 3.0
