@@ -39,8 +39,10 @@ func _set_player_role(value: Game.Role) -> void:
 	match value:
 		Game.Role.ROLE_A:
 			player_role.text = "Role A"
+			player_role.modulate = Color(0,1,0)
 		Game.Role.ROLE_B:
 			player_role.text = "Role B"
+			player_role.modulate = Color(1,0,0)
 
 
 func set_ready(value: bool) -> void:
