@@ -1,4 +1,4 @@
-class_name Player
+class_name PlayerA
 extends CharacterBody2D
 
 var max_speed = 200
@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
 		var move_input = Input.get_axis("move_left", "move_right")
 		
-		if Input.is_action_just_pressed("jump"):
+		if Input.is_action_just_pressed("jump") and is_on_floor():
 			jump.rpc()
 #			jump()
 	
