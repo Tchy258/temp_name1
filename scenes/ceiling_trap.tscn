@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://udyl6lr6vq8n"]
+
+[ext_resource type="Texture2D" uid="uid://c4bobkx8evpci" path="res://assets/trap/Shooter_Arrow_Trap.png" id="1_xpty8"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CeilingArrowTrap" type="Sprite2D" parent="."]
+texture = ExtResource("1_xpty8")
+hframes = 6
+frame = 3
+
+[node name="Arrow" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+texture = ExtResource("1_xpty8")
+region_enabled = true
+region_rect = Rect2(53, 7, 6, 8)
