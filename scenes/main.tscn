@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5hufqs7sbm01"]
+[gd_scene load_steps=5 format=3 uid="uid://b5hufqs7sbm01"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ysfbh"]
 [ext_resource type="PackedScene" uid="uid://b3mhsy021dqog" path="res://scenes/player.tscn" id="2_e1311"]
 [ext_resource type="PackedScene" uid="uid://duc5yompaf61l" path="res://scenes/box.tscn" id="3_cvene"]
+[ext_resource type="PackedScene" uid="uid://udyl6lr6vq8n" path="res://scenes/ceiling_trap.tscn" id="3_gb0ku"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ysfbh")
 player_scene = ExtResource("2_e1311")
+celing_trap_scene = ExtResource("3_gb0ku")
 
 [node name="Players" type="Node2D" parent="."]
 
@@ -20,4 +22,4 @@ scale = Vector2(10.996, 0.171859)
 position = Vector2(39, 89)
 
 [node name="Marker2D2" type="Marker2D" parent="Spawn"]
-position = Vector2(210, 95)
+position = Vector2(209, 11)
