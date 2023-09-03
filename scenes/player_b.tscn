@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh1egp5aes3yp"]
+
+[ext_resource type="Script" path="res://scenes/player_b.gd" id="1_lwthv"]
+[ext_resource type="Script" path="res://scripts/player_2_camera.gd" id="1_r62i8"]
+
+[node name="PlayerB" type="Node2D"]
+script = ExtResource("1_lwthv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("1_r62i8")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")

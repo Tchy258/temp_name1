@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxaqx4j3qo536"]
+
+[ext_resource type="Texture2D" uid="uid://bkol1slpdeak" path="res://assets/trap/ceiling_trap_1.png" id="1_l38im"]
+[ext_resource type="Script" path="res://scripts/ceiling_trap_button.gd" id="2_yxy1s"]
+[ext_resource type="PackedScene" uid="uid://udyl6lr6vq8n" path="res://scenes/ceiling_trap.tscn" id="3_wnl0c"]
+
+[node name="Ui" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 512.0
+offset_bottom = 288.0
+scale = Vector2(0.5, 0.5)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="CeilingTrap" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("1_l38im")
+script = ExtResource("2_yxy1s")
+trap = ExtResource("3_wnl0c")

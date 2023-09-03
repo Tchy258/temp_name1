@@ -1,22 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3mhsy021dqog"]
+[gd_scene load_steps=4 format=3 uid="uid://d2pml8325o34q"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_xuxkm"]
-[ext_resource type="Texture2D" uid="uid://sv7732826w0b" path="res://assets/sprites/Meow Knight/Meow-Knight_Idle.png" id="2_3318s"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_nkpbi"]
+[ext_resource type="Texture2D" uid="uid://sv7732826w0b" path="res://assets/sprites/Meow Knight/Meow-Knight_Idle.png" id="2_brfrk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s2jkn"]
 radius = 4.0
 height = 12.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="PlayerA" type="CharacterBody2D"]
 collision_mask = 129
-script = ExtResource("1_xuxkm")
+script = ExtResource("1_nkpbi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_s2jkn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 3)
-texture = ExtResource("2_3318s")
+texture = ExtResource("2_brfrk")
 vframes = 6
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://udyl6lr6vq8n"]
 
 [ext_resource type="Script" path="res://scripts/ceiling_body.gd" id="1_x435k"]
-[ext_resource type="Texture2D" uid="uid://c4bobkx8evpci" path="res://assets/trap/Shooter_Arrow_Trap.png" id="1_xpty8"]
+[ext_resource type="Texture2D" uid="uid://x2762w841lte" path="res://resources/ceiling_trap_texture.tres" id="2_1wqkh"]
 [ext_resource type="PackedScene" uid="uid://c6v21eln1hux6" path="res://scenes/arrow_body.tscn" id="3_ps24h"]
 [ext_resource type="Script" path="res://scripts/bullet_spawner.gd" id="4_amv8n"]
 
@@ -67,7 +67,7 @@ collision_mask = 129
 script = ExtResource("1_x435k")
 
 [node name="CeilingSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_xpty8")
+texture = ExtResource("2_1wqkh")
 hframes = 6
 
 [node name="CeilingCollision" type="CollisionShape2D" parent="."]

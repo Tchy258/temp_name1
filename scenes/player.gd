@@ -5,7 +5,13 @@ var max_speed = 200
 var jump_speed = 200
 var acceleration = 1000
 var gravity = 400
+@onready var player_camera = $Camera2D
 
+func _ready():
+	if is_multiplayer_authority():
+		player_camera.enabled = true
+	else:
+		player_camera.enabled = false
 
 func _physics_process(delta: float) -> void:
 #	Debug.dprint(velocity)
