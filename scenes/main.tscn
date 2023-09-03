@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5hufqs7sbm01"]
+[gd_scene load_steps=6 format=3 uid="uid://b5hufqs7sbm01"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ysfbh"]
 [ext_resource type="PackedScene" uid="uid://d2pml8325o34q" path="res://scenes/player_a.tscn" id="2_tbbat"]
 [ext_resource type="PackedScene" uid="uid://duc5yompaf61l" path="res://scenes/box.tscn" id="3_cvene"]
 [ext_resource type="PackedScene" uid="uid://dh1egp5aes3yp" path="res://scenes/player_b.tscn" id="3_kxcf0"]
+[ext_resource type="PackedScene" uid="uid://udyl6lr6vq8n" path="res://scenes/ceiling_trap.tscn" id="3_gb0ku"]
+[ext_resource type="PackedScene" uid="uid://djv1rc6fw3m4o" path="res://scenes/spear.tscn" id="5_atpje"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ysfbh")
@@ -34,3 +36,8 @@ visible_characters = 5
 wait_time = 40.0
 one_shot = true
 autostart = true
+
+[node name="Spear" parent="." instance=ExtResource("5_atpje")]
+position = Vector2(172, 95)
+collision_layer = 1
+collision_mask = 128
