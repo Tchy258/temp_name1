@@ -22,5 +22,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Label.text=str(int($Timer.time_left))
+	$Label.text=str(snapped($Timer.time_left,0.01))
 	

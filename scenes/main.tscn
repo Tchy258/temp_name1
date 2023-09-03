@@ -28,6 +28,7 @@ position = Vector2(209, 11)
 offset_left = 216.0
 offset_right = 256.0
 offset_bottom = 23.0
+visible_characters = 5
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 40.0
