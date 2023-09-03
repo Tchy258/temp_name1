@@ -5,7 +5,6 @@ extends Node2D
 @onready var players: Node2D = $Players
 @onready var spawn: Node2D = $Spawn
 
-
 func _ready() -> void:
 	Game.sort_players()
 	for i in Game.players.size():
@@ -23,4 +22,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	$Label.text=str(int($Timer.time_left))
+	

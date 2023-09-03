@@ -23,3 +23,13 @@ position = Vector2(39, 89)
 
 [node name="Marker2D2" type="Marker2D" parent="Spawn"]
 position = Vector2(209, 11)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 216.0
+offset_right = 256.0
+offset_bottom = 23.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 40.0
+one_shot = true
+autostart = true
