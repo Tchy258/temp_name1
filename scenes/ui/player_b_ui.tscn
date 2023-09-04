@@ -39,3 +39,6 @@ size_flags_horizontal = 0
 action_mode = 0
 icon = ExtResource("1_l38im")
 script = ExtResource("2_xsp0f")
+trap_props = {
+"scale": Vector2(2, 2)
+}

@@ -9,6 +9,7 @@ var current_button: Button
 var base_placer_position: Vector2
 var trap_to_place: CompressedTexture2D
 var this_player_data: Game.PlayerData
+var trap_props: Dictionary
 # Called when the node enters the scene tree for the first time.
 
 enum State {
@@ -38,6 +39,7 @@ func _on_button_pressed(button: Button):
 			current_state = State.TRAP_CLICK
 			current_trap = button.trap
 			trap_to_place = button.icon
+			trap_props = button.trap_props
 			base_placer_position = get_local_mouse_position()
 			current_button = button
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,6 +52,7 @@ func _process(delta):
 func trap_click():
 	trap_placer.sprite.texture = trap_to_place
 	trap_placer.enabled = true
+	trap_placer.scale = trap_props.scale
 	trap_placer.visible = true
 	trap_placer.lifted = true
 	trap_placer.position = base_placer_position

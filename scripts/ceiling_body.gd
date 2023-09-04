@@ -22,7 +22,7 @@ func _on_mouse_exited() -> void:
 @rpc("call_local","reliable")
 func process_input() -> void:
 	if not animation_player.is_playing():
-			animation_player.play("new_animation")
+			animation_player.play("activate")
 			
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.

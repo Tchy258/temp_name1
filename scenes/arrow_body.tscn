@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6v21eln1hux6"]
+[gd_scene load_steps=7 format=3 uid="uid://c6v21eln1hux6"]
 
 [ext_resource type="Script" path="res://scenes/arrow_body.gd" id="1_oef5f"]
 [ext_resource type="Texture2D" uid="uid://c4bobkx8evpci" path="res://assets/trap/Shooter_Arrow_Trap.png" id="1_psujw"]
@@ -7,7 +7,7 @@
 emission_shape = 3
 emission_box_extents = Vector3(3, 1, 1)
 particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
+direction = Vector3(0, -0.5, 0)
 spread = 0.0
 gravity = Vector3(0, -98, 0)
 orbit_velocity_min = 0.0
@@ -19,6 +19,27 @@ radial_accel_max = 1.0
 radius = 4.0
 height = 15.0
 
+[sub_resource type="Animation" id="Animation_it781"]
+resource_name = "fade"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kunvp"]
+_data = {
+"fade": SubResource("Animation_it781")
+}
+
 [node name="ArrowBody" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 129
@@ -27,6 +48,7 @@ center_of_mass = Vector2(0, 10)
 gravity_scale = 0.5
 max_contacts_reported = 1
 contact_monitor = true
+linear_velocity = Vector2(0, 70)
 script = ExtResource("1_oef5f")
 
 [node name="Container" type="Node2D" parent="."]
@@ -50,3 +72,8 @@ trail_lifetime = 3.0
 [node name="ArrowCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 4)
 shape = SubResource("CapsuleShape2D_0uwck")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kunvp")
+}
