@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://b5hufqs7sbm01"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ysfbh"]
-[ext_resource type="PackedScene" uid="uid://b3mhsy021dqog" path="res://scenes/player.tscn" id="2_e1311"]
+[ext_resource type="PackedScene" uid="uid://d2pml8325o34q" path="res://scenes/player_a.tscn" id="2_tbbat"]
 [ext_resource type="PackedScene" uid="uid://duc5yompaf61l" path="res://scenes/box.tscn" id="3_cvene"]
-[ext_resource type="PackedScene" uid="uid://udyl6lr6vq8n" path="res://scenes/ceiling_trap.tscn" id="3_gb0ku"]
+[ext_resource type="PackedScene" uid="uid://dh1egp5aes3yp" path="res://scenes/player_b.tscn" id="3_kxcf0"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ysfbh")
-player_scene = ExtResource("2_e1311")
-celing_trap_scene = ExtResource("3_gb0ku")
+player_a_scene = ExtResource("2_tbbat")
+player_b_scene = ExtResource("3_kxcf0")
 
 [node name="Players" type="Node2D" parent="."]
 

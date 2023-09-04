@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="temp_name1"
+config/name="Trap Town Battles"
 run/main_scene="res://scenes/lobby.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Debug="*res://scripts/debug.gd"
 Game="*res://scripts/game.gd"
+TrapManager="*res://scripts/trap_manager.gd"
 
 [display]
 

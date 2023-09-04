@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var player_scene: PackedScene
-@export var celing_trap_scene: PackedScene
+@export var player_a_scene: PackedScene
+@export var player_b_scene: PackedScene
 @onready var players: Node2D = $Players
 @onready var spawn: Node2D = $Spawn
 
@@ -11,12 +11,14 @@ func _ready() -> void:
 		var player_data = Game.players[i]
 		var player
 		if player_data.role == Game.Role.ROLE_A:
-			player = player_scene.instantiate()
+			player = player_a_scene.instantiate()
+			player.global_position = spawn.get_child(i).global_position
 		else:
-			player = celing_trap_scene.instantiate()
-		players.add_child(player)
+			player = player_b_scene.instantiate()
+			player.global_position = Vector2(0,0)
 		player.setup(player_data)
-		player.global_position = spawn.get_child(i).global_position
+		players.add_child(player)
+		
 	
 
 

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv41q3q1njybb"]
+
+[ext_resource type="Script" path="res://scripts/draggable_trap.gd" id="1_liboj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4m04m"]
+
+[node name="DraggableTrap" type="Area2D"]
+collision_layer = 128
+collision_mask = 129
+script = ExtResource("1_liboj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4m04m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.360784)

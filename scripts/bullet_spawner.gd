@@ -21,11 +21,11 @@ func fire_sever(target: Vector2) -> void:
 		return
 	if get_child_count(true) == 0:
 		var bullet = arrow_scene.instantiate()
-		add_child(bullet, true)
-		bullet.connect("body_entered",_on_bullet_body_entered)
+		bullet.connect("should_be_freed",_on_free)
 		bullet.global_position = arrow_spawn.global_position
+		add_child(bullet, true)
 			
 
-func _on_bullet_body_entered(_body: Node2D) -> void:
+func _on_free() -> void:
 	var instance = get_child(0,true)
 	call_deferred("remove_child",instance)
