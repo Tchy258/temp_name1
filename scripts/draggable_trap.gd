@@ -1,14 +1,19 @@
 extends Area2D
 
+var enabled = true
 var lifted = false
 @onready var sprite = $Sprite2D
+signal placed
+
+func _ready():
+	visible = false
 
 func _unhandled_input(event):
-	if event is InputEventMouseButton and not event.pressed:
-		lifted = false
-	if lifted and event is InputEventMouseMotion:
-		position += event.relative
-
-func _input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.pressed:
-		lifted = true
+	if enabled:
+		if lifted and event is InputEventMouseMotion:
+			position = get_global_mouse_position()
+		if event is InputEventMouseButton and not event.pressed:
+			lifted = false
+			placed.emit(global_position)
+			enabled = false
+			visible = false

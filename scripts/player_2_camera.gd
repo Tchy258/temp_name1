@@ -1,23 +1,56 @@
 extends Camera2D
+class_name PanningCamera2D
 
-const MAX_CAMERA_DISTANCE := 50.0
-const MAX_CAMERA_PERCENT := 0.1
-const CAMERA_SPEED := 0.1
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+const MIN_ZOOM: float = 0.1
+const MAX_ZOOM: float = 1.0
+const ZOOM_RATE: float = 8.0
+const ZOOM_INCREMENT: float = 0.1
+const PAN_SPEED: float = 150
+
+var is_cursor_inside: bool = true
+
+var _target_zoom: float = 1.0
+
+func _notification(what):
+	match what:
+		NOTIFICATION_WM_MOUSE_EXIT:
+			is_cursor_inside = false
+		NOTIFICATION_WM_MOUSE_ENTER:
+			is_cursor_inside = true
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	var viewport : Viewport = get_viewport()
-	var viewport_center = viewport.get_size() / 2.0
-	var direction = viewport.get_mouse_position() - viewport_center
-	var percent = (direction / viewport.size * 2.0).length()
-	var camera_position: Vector2
-	if percent < MAX_CAMERA_PERCENT:
-		camera_position = global_position + direction.normalized() * MAX_CAMERA_DISTANCE * (percent / MAX_CAMERA_PERCENT)
-	else:
-		camera_position = global_position + direction.normalized() * MAX_CAMERA_DISTANCE
+func _physics_process(delta: float) -> void:
+	if is_multiplayer_authority() and is_cursor_inside:
+		zoom = lerp(zoom, _target_zoom * Vector2.ONE, ZOOM_RATE * delta)
+		var mouse_pos = get_local_mouse_position()
+		var viewport_rect = get_viewport_rect()
+		var viewport_start = viewport_rect.position
+		var viewport_end = viewport_rect.position + viewport_rect.size/2
+		if (mouse_pos.x < viewport_start.x + 10):
+				position.x -= PAN_SPEED * delta
+		if (mouse_pos.x > viewport_end.x - 10):
+				position.x += PAN_SPEED * delta
+		if (mouse_pos.y < viewport_start.y + 10):
+				position.y -= PAN_SPEED * delta
+		if (mouse_pos.y > viewport_end.y - 10):
+				position.y += PAN_SPEED * delta
 
-	global_position = lerp(global_position, camera_position, CAMERA_SPEED)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and is_multiplayer_authority() and is_cursor_inside:
+		if event.is_pressed():
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				zoom_in()
+			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				zoom_out()
+		
+
+
+func zoom_in() -> void:
+	_target_zoom = max(_target_zoom + ZOOM_INCREMENT, MIN_ZOOM)
+	set_physics_process(true)
+
+
+func zoom_out() -> void:
+	_target_zoom = min(_target_zoom - ZOOM_INCREMENT, MAX_ZOOM)
+	set_physics_process(true)

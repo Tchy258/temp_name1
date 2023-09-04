@@ -11,3 +11,4 @@ script = ExtResource("1_liboj")
 shape = SubResource("RectangleShape2D_4m04m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.360784)

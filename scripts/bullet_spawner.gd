@@ -21,9 +21,9 @@ func fire_sever(target: Vector2) -> void:
 		return
 	if get_child_count(true) == 0:
 		var bullet = arrow_scene.instantiate()
-		add_child(bullet, true)
 		bullet.connect("body_entered",_on_bullet_body_entered)
 		bullet.global_position = arrow_spawn.global_position
+		add_child(bullet, true)
 			
 
 func _on_bullet_body_entered(_body: Node2D) -> void:
