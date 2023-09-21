@@ -14,7 +14,7 @@ func place(trap_id: TrapManager.traps, position: Vector2) -> void:
 	trap.init.rpc(trap.player_id,trap.global_position)
 
 
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "call_remote")
 func place_server(trap_id:TrapManager.traps) -> void:
 	var scene = TrapManager.get_trap_scene(trap_id)
 	var trap = scene.instantiate()

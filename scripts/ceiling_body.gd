@@ -40,8 +40,6 @@ func setup(player_data: Game.PlayerData):
 
 @rpc("any_peer","call_local")
 func init(id:int, global_pos: Vector2):
-	print(id)
-	print(global_pos)
 	set_multiplayer_authority(id)
 	player_id = id
 	global_position = global_pos

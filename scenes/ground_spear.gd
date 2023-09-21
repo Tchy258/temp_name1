@@ -1,6 +1,6 @@
 extends RigidBody2D
 @onready var animation_player = $Container/AnimationPlayer
-
+@export var player_id: int
 var is_selected = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,15 +9,10 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float):
 	if is_multiplayer_authority():
 		if Input.is_action_just_pressed("l_click") and is_selected:
 			process_input.rpc()
-
-@rpc("call_local","reliable")
-func process_input() -> void:
-	if not animation_player.is_playing():
-			animation_player.play("activation")
 
 func _on_mouse_entered() -> void:
 	is_selected = true
@@ -26,9 +21,11 @@ func _on_mouse_exited() -> void:
 	is_selected = false
 
 
-func _activate() -> void:
-	animation_player.play("activation")
-	
+@rpc("call_local","reliable")
+func process_input() -> void:
+	if not animation_player.is_playing():
+			animation_player.play("activation")
+
 func setup(player_data: Game.PlayerData):
 	set_multiplayer_authority(player_data.id)
 	name = str(player_data.id)
