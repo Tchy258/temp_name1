@@ -8,6 +8,7 @@
 [node name="Camera2D" type="Camera2D"]
 scale = Vector2(2, 2)
 anchor_mode = 0
+enabled = false
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("4_hsj0s")

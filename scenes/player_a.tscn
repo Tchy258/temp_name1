@@ -20,6 +20,7 @@ texture = ExtResource("2_brfrk")
 vframes = 6
 
 [node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 editor_draw_drag_margin = true

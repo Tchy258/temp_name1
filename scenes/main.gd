@@ -17,7 +17,7 @@ func _ready() -> void:
 			player = player_b_scene.instantiate()
 			player.global_position = Vector2(0,0)
 		player.setup(player_data)
-		players.add_child(player)
+		players.call_deferred("add_child",player)
 		
 	
 

@@ -18,6 +18,11 @@ func _notification(what):
 		NOTIFICATION_WM_MOUSE_ENTER:
 			is_cursor_inside = true
 
+func _ready() -> void:
+	if is_multiplayer_authority():
+		enabled = true
+	else:
+		enabled = false
 
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority() and is_cursor_inside:
