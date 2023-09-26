@@ -29,9 +29,7 @@ func _ready():
 		for child in vbox_container.get_children(true):
 			child.connect("pressed",child._on_button_pressed)
 			child.connect("emit_self",_on_button_pressed)
-	#else:
-		#process_mode = Node.PROCESS_MODE_DISABLED
-		#visible=false
+
 
 func _on_button_pressed(button: Button):
 	if is_multiplayer_authority():
@@ -48,7 +46,6 @@ func _process(delta):
 		if current_state == State.TRAP_CLICK:
 			trap_click()
 
-#@rpc("call_local","reliable")
 func trap_click():
 	trap_placer.sprite.texture = trap_to_place
 	trap_placer.enabled = true
@@ -58,21 +55,21 @@ func trap_click():
 	trap_placer.position = base_placer_position
 	current_state = State.TRAP_PLACEMENT
 	trap_placer.connect("placed", _on_trap_placed,CONNECT_ONE_SHOT)
+	trap_placer.connect("canceled",_on_trap_canceled, CONNECT_ONE_SHOT)
+
+func _reset_placer():
+	current_button.disabled = false
+	current_state = State.MAP_WATCH
+	trap_placer.disconnect("canceled",_on_trap_placed)
 
 func _on_trap_placed(trap_position: Vector2):
 	if !is_multiplayer_authority(): return
-	#_on_trap_placed_rpc.rpc(trap_position)
 	spawner.place(current_trap,trap_position)
-	current_button.disabled = false
-	current_state = State.MAP_WATCH
+	_reset_placer()
 	
-@rpc("call_local","reliable")
-func _on_trap_placed_rpc(trap_position: Vector2):
+func _on_trap_canceled():
 	if !is_multiplayer_authority(): return
-	spawner.place(current_trap,trap_position)
-	current_button.disabled = false
-	trap_placer.disconnect("placed",_on_trap_placed)
-	current_state = State.MAP_WATCH
+	_reset_placer()
 
 func setup(player_data: Game.PlayerData):
 	this_player_data = player_data
