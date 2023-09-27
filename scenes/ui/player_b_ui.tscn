@@ -8,7 +8,7 @@
 
 [node name="Camera2D" type="Camera2D"]
 scale = Vector2(2, 2)
-anchor_mode = 0
+offset = Vector2(128, 72)
 enabled = false
 editor_draw_limits = true
 editor_draw_drag_margin = true
