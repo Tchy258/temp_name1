@@ -29,6 +29,7 @@ func _ready():
 		for child in vbox_container.get_children(true):
 			child.connect("pressed",child._on_button_pressed)
 			child.connect("emit_self",_on_button_pressed)
+		
 
 
 func _on_button_pressed(button: Button):
@@ -40,6 +41,8 @@ func _on_button_pressed(button: Button):
 			trap_props = button.trap_props
 			base_placer_position = get_local_mouse_position()
 			current_button = button
+			trap_placer.connect("placed", _on_trap_placed,CONNECT_ONE_SHOT)
+			trap_placer.connect("canceled",_on_trap_canceled,CONNECT_ONE_SHOT)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_multiplayer_authority():
@@ -54,17 +57,18 @@ func trap_click():
 	trap_placer.lifted = true
 	trap_placer.position = base_placer_position
 	current_state = State.TRAP_PLACEMENT
-	trap_placer.connect("placed", _on_trap_placed,CONNECT_ONE_SHOT)
-	trap_placer.connect("canceled",_on_trap_canceled, CONNECT_ONE_SHOT)
+	
 
 func _reset_placer():
 	current_button.disabled = false
 	current_state = State.MAP_WATCH
-	trap_placer.disconnect("canceled",_on_trap_placed)
+	
+
 
 func _on_trap_placed(trap_position: Vector2):
 	if !is_multiplayer_authority(): return
 	spawner.place(current_trap,trap_position)
+	trap_placer.disconnect("canceled",_on_trap_canceled)
 	_reset_placer()
 	
 func _on_trap_canceled():

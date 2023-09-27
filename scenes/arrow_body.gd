@@ -2,6 +2,7 @@ extends RigidBody2D
 
 @export var speed = 300
 @onready var animation_player = $AnimationPlayer
+@onready var collision_shape = $ArrowCollision
 signal should_be_freed
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
@@ -14,10 +15,8 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	var colliding_body := body as CharacterBody2D
-	if colliding_body:
-		colliding_body.get_collision_layer_value(0b1)
-		var direction = -colliding_body.velocity.normalized()
-		colliding_body.velocity=direction*300
+	if colliding_body and colliding_body.has_method("bounce"):
+		colliding_body.bounce(collision_shape.global_position)
 	animation_player.play("fade")
 	self.collision_mask = 0b10000000
 

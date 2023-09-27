@@ -39,6 +39,9 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("test"):
 			test.rpc_id(1)
 
+func bounce(collider_pos: Vector2) -> void:
+	var direction = (global_position - collider_pos).normalized()
+	self.velocity = direction*300
 
 @rpc("unreliable_ordered")
 func send_info(pos: Vector2, vel: Vector2) -> void:
