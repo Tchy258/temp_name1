@@ -1,10 +1,10 @@
 class_name PlayerA
 extends CharacterBody2D
 
-var max_speed = 200
-var jump_speed = 200
-var acceleration = 1000
-var gravity = 400
+var max_speed = 300
+var jump_speed = 250
+var acceleration = 1500
+var gravity = 450
 @onready var player_camera = $Camera2D
 
 func _ready():
