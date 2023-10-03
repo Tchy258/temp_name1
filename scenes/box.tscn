@@ -1,15 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://duc5yompaf61l"]
 
-[ext_resource type="Texture2D" uid="uid://p1w61qttpon4" path="res://icon.svg" id="1_ul5wy"]
+[ext_resource type="Texture2D" uid="uid://b6dhjt4mowe5t" path="res://icon.svg" id="1_ul5wy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwrpo"]
-size = Vector2(128, 128)
+size = Vector2(128, 126)
 
 [node name="Box" type="StaticBody2D"]
 collision_layer = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_cwrpo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
