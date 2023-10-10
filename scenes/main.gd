@@ -18,11 +18,14 @@ func _ready() -> void:
 			player.global_position = Vector2(0,0)
 		player.setup(player_data)
 		players.call_deferred("add_child",player)
-		
+	TimerManager.stage_timer.connect("timeout",_on_stage_timer_timeout)
+	TimerManager.start_stage_timer.rpc(90)
 	
 
+func _on_stage_timer_timeout():
+	TimerManager.on_stage_timer_timeout.rpc()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$Label.text=str(snapped($Timer.time_left,0.01))
+	pass
 	

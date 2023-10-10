@@ -18,7 +18,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 Debug="*res://scripts/debug.gd"
+Configs="*res://scripts/configs.gd"
 Game="*res://scripts/game.gd"
+TimerManager="*res://scripts/timer_manager.gd"
 TrapManager="*res://scripts/trap_manager.gd"
 
 [display]

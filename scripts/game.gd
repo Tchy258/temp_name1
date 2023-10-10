@@ -18,7 +18,7 @@ var roles := {}
 signal upnp_completed(error)
 
 # Replace this with your own server port number between 1024 and 65535.
-const SERVER_PORT = 5409
+var server_port = Configs.port if Configs.port != null else 5409
 var thread = null
 
 
@@ -86,14 +86,17 @@ func _upnp_setup(server_port):
 		emit_signal("upnp_completed", OK)
 
 func _ready():
+	server_port = Configs.port if Configs.port != null else 5409
 	thread = Thread.new()
-	thread.start(_upnp_setup.bind(SERVER_PORT))
+	thread.start(_upnp_setup.bind(server_port))
 	print("start")
+
+		
 
 func _exit_tree():
 	# Wait for thread finish here to handle game exit while the thread is running.
 	thread.wait_to_finish()
-
+	
 
 class PlayerData:
 	var id: int

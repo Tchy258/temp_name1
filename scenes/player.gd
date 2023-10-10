@@ -15,7 +15,7 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 #	Debug.dprint(velocity)
-	
+
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
@@ -41,7 +41,7 @@ func _input(event: InputEvent) -> void:
 
 func bounce(collider_pos: Vector2) -> void:
 	var direction = (global_position - collider_pos).normalized()
-	self.velocity = direction*300
+	self.velocity = direction*400
 
 @rpc("unreliable_ordered")
 func send_info(pos: Vector2, vel: Vector2) -> void:
@@ -60,7 +60,7 @@ func setup(player_data: Game.PlayerData):
 	name = str(player_data.id)
 	Debug.dprint(player_data.name, 30)
 	Debug.dprint(player_data.role, 30)
-
+	
 
 @rpc
 func test():
