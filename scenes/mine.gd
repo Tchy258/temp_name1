@@ -67,7 +67,7 @@ func _process(_delta):
 	if exploding:
 		if 1 < explosion_spr.frame && explosion_spr.frame < 8:
 			if inside_explosion:
-				player.bounce(self.position, true)
+				player.receive_damage(self.position, 100, 200)
 				inside_explosion = false
 				explosion_rad.queue_free()
 
