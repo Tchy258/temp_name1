@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvu08ji78i4ey"]
+[gd_scene load_steps=11 format=3 uid="uid://cvu08ji78i4ey"]
 
 [ext_resource type="Script" path="res://scenes/mine.gd" id="1_3bsbv"]
 [ext_resource type="Texture2D" uid="uid://c6tt5nyksy0j1" path="res://assets/trap/Mine.png" id="2_a2opu"]
@@ -73,6 +73,8 @@ _data = {
 "RESET": SubResource("Animation_6sieh")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_l24w2"]
+
 [node name="Mine" type="Node2D"]
 script = ExtResource("1_3bsbv")
 
@@ -89,7 +91,6 @@ centered = false
 hframes = 2
 
 [node name="Explosion" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -3)
 texture = ExtResource("4_g5usw")
 hframes = 10
@@ -109,4 +110,12 @@ libraries = {
 stream = ExtResource("7_gagvr")
 volume_db = -10.012
 
+[node name="ExplosionRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionRadius"]
+position = Vector2(0, -3)
+scale = Vector2(2.12, 2.08)
+shape = SubResource("CircleShape2D_l24w2")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="ExplosionRadius" to="." method="_on_explosion_radius_body_entered"]
