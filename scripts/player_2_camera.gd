@@ -31,14 +31,15 @@ func _physics_process(delta: float) -> void:
 		var viewport_rect = get_viewport_rect()
 		var viewport_start = viewport_rect.position
 		var viewport_end = viewport_rect.position + viewport_rect.size/2
-		if (mouse_pos.x < viewport_start.x + 10) or Input.is_action_pressed("move_left"):
-				position.x -= PAN_SPEED * delta
-		if (mouse_pos.x > viewport_end.x - 10) or Input.is_action_pressed("move_right"):
-				position.x += PAN_SPEED * delta
-		if (mouse_pos.y < viewport_start.y + 10) or Input.is_action_pressed("move_up"):
-				position.y -= PAN_SPEED * delta
-		if (mouse_pos.y > viewport_end.y - 10) or Input.is_action_pressed("move_down"):
-				position.y += PAN_SPEED * delta
+		var displacement = PAN_SPEED * delta + _target_zoom * 2
+		if Input.is_action_pressed("move_left"):
+				position.x -= displacement
+		if Input.is_action_pressed("move_right"):
+				position.x += displacement
+		if Input.is_action_pressed("move_up"):
+				position.y -= displacement
+		if Input.is_action_pressed("move_down"):
+				position.y += displacement
 
 
 func _unhandled_input(event: InputEvent) -> void:

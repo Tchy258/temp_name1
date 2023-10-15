@@ -2,16 +2,21 @@ extends MarginContainer
 
 
 const MAX_PLAYERS = 4
-const PORT = 5409
 
 @onready var user = %User
 @onready var host = %Host
 @onready var join = %Join
+@onready var port = %Port
 
+var port_number: int = Configs.port if Configs.port != null else int(port.value)
+var username = Configs.username if Configs.username != null else OS.get_environment("USERNAME") + (str(randi() % 1000) if Engine.is_editor_hint()
+	else "")
+var last_ip = Configs.last_ip if Configs.last_ip != null else "127.0.0.1"
 
 @onready var ip = %IP
 @onready var back_join: Button = %BackJoin
 @onready var confirm_join: Button = %ConfirmJoin
+@onready var change_port: Button = %ChangePort
 
 @onready var role_a: Button = %RoleA
 @onready var role_b: Button = %RoleB
@@ -47,11 +52,13 @@ func _ready():
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
+	
 	Game.player_updated.connect(func(id) : _check_ready())
 	Game.players_updated.connect(_check_ready)
 	
 	host.pressed.connect(_on_host_pressed)
 	join.pressed.connect(_on_join_pressed)
+	change_port.pressed.connect(_on_change_port_pressed)
 	
 	confirm_join.pressed.connect(_on_confirm_join_pressed)
 	
@@ -67,12 +74,21 @@ func _ready():
 	
 	ready_toggle.disabled = true
 	time_container.hide()
-
+	#if Game.players.size() > 0:
+#		for player in Game.players:
+#			var lobby_player = lobby_player_scene.instantiate() as UILobbyPlayer
+#			players.add_child(lobby_player)
+#			lobby_player.setup(player)
+#		_go_to_menu(ready_menu)
+#	else:
 	_go_to_menu(start_menu)
-	
-	user.text = OS.get_environment("USERNAME") + (str(randi() % 1000) if Engine.is_editor_hint()
- else "")
-	
+	username = Configs.username if Configs.username != null else OS.get_environment("USERNAME") + (str(randi() % 1000) if Engine.is_editor_hint()
+	else "")
+	user.text = str(username)
+	port_number = Configs.port if Configs.port != null else 5409
+	port.value = port_number
+	last_ip = Configs.last_ip if Configs.last_ip != null else "127.0.0.1"
+	ip.text = str(last_ip)
 	Game.upnp_completed.connect(_on_upnp_completed)
 
 
@@ -90,9 +106,11 @@ func _on_upnp_completed(status) -> void:
 
 
 func _on_host_pressed() -> void:
+	Configs.config_file.set_value("Network","username",user.text)
+	Configs.config_file.save("user://network_settings.cfg")
 	var peer = ENetMultiplayerPeer.new()
 	
-	var err = peer.create_server(PORT, MAX_PLAYERS)
+	var err = peer.create_server(port_number, MAX_PLAYERS)
 	if err:
 		Debug.dprint("Host Error: %d" %err)
 		return
@@ -106,12 +124,16 @@ func _on_host_pressed() -> void:
 
 
 func _on_join_pressed() -> void:
+	Configs.config_file.set_value("Network","username",user.text)
+	Configs.config_file.save("user://network_settings.cfg")
 	_go_to_menu(join_menu)
 
 
 func _on_confirm_join_pressed() -> void:
+	Configs.config_file.set_value("Network","last_ip",ip.text)
+	Configs.config_file.save("user://network_settings.cfg")
 	var peer = ENetMultiplayerPeer.new()
-	var err = peer.create_client(ip.text, PORT)
+	var err = peer.create_client(ip.text, port_number)
 	if err:
 		Debug.dprint("Host Error: %d" %err)
 		return
@@ -285,3 +307,8 @@ func _back_to_first_menu() -> void:
 		first.show()
 	if Game.is_online():
 		_disconnect()
+
+func _on_change_port_pressed() -> void:
+	Configs.config_file.set_value("Network","port",port.value)
+	Configs.config_file.save("user://network_settings.cfg")
+	Debug.dprint("Port changed to " + str(port.value) + " close and reopen the game for the change to take effect!",5)

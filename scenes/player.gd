@@ -1,16 +1,15 @@
 class_name PlayerA
 extends CharacterBody2D
 
-var max_speed = 200
-var jump_speed = 200
-var acceleration = 1000
-var gravity = 400
+var max_speed = 300
+var jump_speed = 250
+var acceleration = 1500
+var gravity = 450
 var damage: bool = false
 var damage_max_time: int = 60
 var damage_timer: int = damage_max_time
 var blink_max_time: int = 3
 var blink_timer: int = blink_max_time
-
 @onready var player_camera = $Camera2D
 @onready var player_spr = $Sprite2D
 
@@ -64,7 +63,7 @@ func _input(event: InputEvent) -> void:
 
 func bounce(collider_pos: Vector2) -> void:
 	var direction = (global_position - collider_pos).normalized()
-	self.velocity = direction*300
+	self.velocity = direction*400
 
 func receive_damage(collider_pos: Vector2, x_force: int, y_force: int) -> void:
 	if !damage:
@@ -91,7 +90,7 @@ func setup(player_data: Game.PlayerData):
 	name = str(player_data.id)
 	Debug.dprint(player_data.name, 30)
 	Debug.dprint(player_data.role, 30)
-
+	
 
 @rpc
 func test():

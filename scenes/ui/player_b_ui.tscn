@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxaqx4j3qo536"]
+[gd_scene load_steps=8 format=3 uid="uid://cxaqx4j3qo536"]
 
 [ext_resource type="Texture2D" uid="uid://3uo716adnwk6" path="res://assets/trap/ceiling_trap_1.png" id="1_l38im"]
 [ext_resource type="Script" path="res://scenes/ui/player2_canvas.gd" id="2_aocac"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/player_2_camera.gd" id="4_hsj0s"]
 [ext_resource type="Texture2D" uid="uid://qrdetv14jtqj" path="res://assets/trap/spear_1.png" id="5_yra6b"]
 [ext_resource type="Texture2D" uid="uid://doadycrhpqhib" path="res://assets/trap/mine1.png" id="6_71l80"]
+[ext_resource type="Texture2D" uid="uid://c24uli8opc2de" path="res://assets/trap/fire_icon.png" id="6_byab6"]
 
 [node name="Camera2D" type="Camera2D"]
 scale = Vector2(2, 2)
@@ -59,6 +60,11 @@ trap = 1
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 icon = ExtResource("6_71l80")
+
+[node name="FireTrap" type="Button" parent="CanvasLayer/Ui/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/icon_max_width = 5
+icon = ExtResource("6_byab6")
 icon_alignment = 1
 script = ExtResource("2_xsp0f")
 trap = 2
