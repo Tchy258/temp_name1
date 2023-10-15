@@ -3,7 +3,7 @@ extends MultiplayerSpawner
 @export var trap_spawn: Node2D
 @onready var container = $"../TrapContainer"
 
-func place(trap_id: TrapManager.traps, position: Vector2) -> void:
+func place(trap_id: TrapManager.traps, _position: Vector2) -> void:
 	#place_server.rpc(scene)
 	var scene = TrapManager.get_trap_scene(trap_id)
 	var trap = scene.instantiate()

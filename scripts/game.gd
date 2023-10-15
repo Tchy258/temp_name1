@@ -74,7 +74,7 @@ func _upnp_setup(_server_port):
 	
 	if err != OK:
 		push_error(str(err))
-		emit_signal("upnp_completed", err)
+		call_deferred("emit_signal","upnp_completed", err)
 		return
 
 	var gateway = upnp.get_gateway()
@@ -83,15 +83,17 @@ func _upnp_setup(_server_port):
 		upnp.add_port_mapping(_server_port, _server_port, ProjectSettings.get_setting("application/config/name"), "TCP")
 		print("signal2")
 		
-		emit_signal("upnp_completed", OK)
+		call_deferred("emit_signal","upnp_completed", OK)
 
 func _ready():
+	#self.process_thread_group = Node.PROCESS_THREAD_GROUP_SUB_THREAD
 	server_port = Configs.port if Configs.port != 0 else 5409
 	thread = Thread.new()
+	call_deferred("thread_func")
+
+func thread_func():
 	thread.start(_upnp_setup.bind(server_port))
 	print("start")
-
-		
 
 func _exit_tree():
 	# Wait for thread finish here to handle game exit while the thread is running.

@@ -250,7 +250,8 @@ func starting_game(value: bool):
 
 @rpc("any_peer", "call_local", "reliable")
 func start_game() -> void:
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	var tree = get_tree()
+	tree.call_deferred("change_scene_to_file","res://scenes/main.tscn")
 
 
 
@@ -311,4 +312,11 @@ func _back_to_first_menu() -> void:
 func _on_change_port_pressed() -> void:
 	Configs.config_file.set_value("Network","port",port.value)
 	Configs.config_file.save("user://network_settings.cfg")
-	Debug.dprint("Port changed to " + str(port.value) + " close and reopen the game for the change to take effect!",5)
+	if Game.thread.is_alive():
+		Game.thread.wait_to_finish()
+		Game.thread = null
+	Game.thread = Thread.new()
+	Game.server_port = port.value
+	port_number = port.value
+	Game.call_deferred("thread_func")
+	Debug.dprint("Port changed to " + str(port.value) + "!",5)

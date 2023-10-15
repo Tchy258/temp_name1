@@ -10,7 +10,7 @@ func _ready() -> void:
 	
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	pass
 
 func _on_body_entered(body: Node2D) -> void:

@@ -44,7 +44,7 @@ func _on_button_pressed(button: Button):
 			trap_placer.connect("placed", _on_trap_placed,CONNECT_ONE_SHOT)
 			trap_placer.connect("canceled",_on_trap_canceled,CONNECT_ONE_SHOT)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if is_multiplayer_authority():
 		if current_state == State.TRAP_CLICK:
 			trap_click()

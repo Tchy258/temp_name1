@@ -27,10 +27,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority() and is_cursor_inside:
 		zoom = lerp(zoom, _target_zoom * Vector2.ONE, ZOOM_RATE * delta)
-		var mouse_pos = get_local_mouse_position()
+		var _mouse_pos = get_local_mouse_position()
 		var viewport_rect = get_viewport_rect()
-		var viewport_start = viewport_rect.position
-		var viewport_end = viewport_rect.position + viewport_rect.size/2
+		var _viewport_start = viewport_rect.position
+		var _viewport_end = viewport_rect.position + viewport_rect.size/2
 		var displacement = PAN_SPEED * delta + 1/max(_target_zoom,0.000000001) * 2
 		if Input.is_action_pressed("move_left"):
 				position.x -= displacement
