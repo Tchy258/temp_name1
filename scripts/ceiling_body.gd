@@ -26,7 +26,7 @@ func process_input() -> void:
 			
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_multiplayer_authority():
 		if Input.is_action_just_pressed("l_click") and arrow_spawner.get_child_count() == 0 and is_selected:
 			process_input.rpc()

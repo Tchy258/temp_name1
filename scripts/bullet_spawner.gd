@@ -16,7 +16,7 @@ func fire() -> void:
 
 
 @rpc("any_peer", "call_local")
-func fire_sever(target: Vector2) -> void:
+func fire_sever(_target: Vector2) -> void:
 	if not arrow_scene or not arrow_spawn:
 		return
 	if get_child_count(true) == 0:

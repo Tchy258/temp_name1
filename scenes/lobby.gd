@@ -8,10 +8,10 @@ const MAX_PLAYERS = 4
 @onready var join = %Join
 @onready var port = %Port
 
-var port_number: int = Configs.port if Configs.port != null else int(port.value)
-var username = Configs.username if Configs.username != null else OS.get_environment("USERNAME") + (str(randi() % 1000) if Engine.is_editor_hint()
+var port_number: int = Configs.port if Configs.port != 0 else int(port.value)
+var username = Configs.username if Configs.username != "" else OS.get_environment("USERNAME") + (str(randi() % 1000) if Engine.is_editor_hint()
 	else "")
-var last_ip = Configs.last_ip if Configs.last_ip != null else "127.0.0.1"
+var last_ip = Configs.last_ip if Configs.last_ip != "" else "127.0.0.1"
 
 @onready var ip = %IP
 @onready var back_join: Button = %BackJoin
@@ -53,7 +53,7 @@ func _ready():
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
 	
-	Game.player_updated.connect(func(id) : _check_ready())
+	Game.player_updated.connect(func(_id) : _check_ready())
 	Game.players_updated.connect(_check_ready)
 	
 	host.pressed.connect(_on_host_pressed)
@@ -82,24 +82,24 @@ func _ready():
 #		_go_to_menu(ready_menu)
 #	else:
 	_go_to_menu(start_menu)
-	username = Configs.username if Configs.username != null else OS.get_environment("USERNAME") + (str(randi() % 1000) if Engine.is_editor_hint()
+	username = Configs.username if Configs.username != "" else OS.get_environment("USERNAME") + (str(randi() % 1000) if Engine.is_editor_hint()
 	else "")
 	user.text = str(username)
-	port_number = Configs.port if Configs.port != null else 5409
+	port_number = Configs.port if Configs.port != 0 else 5409
 	port.value = port_number
-	last_ip = Configs.last_ip if Configs.last_ip != null else "127.0.0.1"
+	last_ip = Configs.last_ip if Configs.last_ip != "" else "127.0.0.1"
 	ip.text = str(last_ip)
 	Game.upnp_completed.connect(_on_upnp_completed)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !start_timer.is_stopped():
 		time.text = str(ceil(start_timer.time_left))
 
 
-func _on_upnp_completed(status) -> void:
-	print(status)
-	if status == OK:
+func _on_upnp_completed(_status) -> void:
+	print(_status)
+	if _status == OK:
 		Debug.dprint("Port Opened", 5)
 	else:
 		Debug.dprint("Port Error", 5)
@@ -158,7 +158,7 @@ func _on_peer_connected(id: int) -> void:
 	Debug.dprint("peer_connected %d" % id)
 	
 	send_info.rpc_id(id, Game.get_current_player().to_dict())
-	var local_id = multiplayer.get_unique_id()
+	#var local_id = multiplayer.get_unique_id()
 	if multiplayer.is_server():
 		for player_id in status:
 			set_player_ready.rpc_id(id, player_id, status[player_id])

@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 		var viewport_rect = get_viewport_rect()
 		var viewport_start = viewport_rect.position
 		var viewport_end = viewport_rect.position + viewport_rect.size/2
-		var displacement = PAN_SPEED * delta + _target_zoom * 2
+		var displacement = PAN_SPEED * delta + 1/max(_target_zoom,0.000000001) * 2
 		if Input.is_action_pressed("move_left"):
 				position.x -= displacement
 		if Input.is_action_pressed("move_right"):

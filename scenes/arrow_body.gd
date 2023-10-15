@@ -20,5 +20,5 @@ func _on_body_entered(body: Node2D) -> void:
 	animation_player.play("fade")
 	self.collision_mask = 0b10000000
 
-func _on_animation_finished(anim_name: String) -> void:
+func _on_animation_finished(_anim_name: String) -> void:
 	emit_signal("should_be_freed")

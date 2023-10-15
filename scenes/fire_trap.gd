@@ -29,8 +29,8 @@ func _process(delta):
 			speed += min(GRAVITY * delta, 5)
 			var colliders = move_and_collide(Vector2(0,speed))
 			if colliders:
-				var floor := colliders.get_collider() as TileMap
-				if floor:
+				var stage := colliders.get_collider() as TileMap
+				if stage:
 					reached_floor = true
 					area.connect("mouse_entered",_on_mouse_entered)
 					area.connect("mouse_exited",_on_mouse_exited)

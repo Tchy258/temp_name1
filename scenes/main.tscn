@@ -481,10 +481,16 @@ player_b_scene = ExtResource("3_kxcf0")
 [node name="Spawn" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="Spawn"]
-position = Vector2(39, 89)
+position = Vector2(32, 70)
 
 [node name="Marker2D2" type="Marker2D" parent="Spawn"]
-position = Vector2(431, 9)
+position = Vector2(59, 70)
+
+[node name="Marker2D3" type="Marker2D" parent="Spawn"]
+position = Vector2(83, 70)
+
+[node name="Marker2D4" type="Marker2D" parent="Spawn"]
+position = Vector2(106, 70)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 40.0

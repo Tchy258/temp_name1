@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @onready var timer = $Timer
 
+var beep_time = 2
+
 var active: bool = false
 var exploding: bool = false
 
@@ -24,7 +26,7 @@ func _physics_process(delta):
 		velocity.y += GRAVITY * delta
 		move_and_slide()	
 	if active && !exploding:
-		animation.speed_scale+= 2 * delta
+		animation.speed_scale+= 2.3 * delta
 
 	
 
@@ -33,7 +35,7 @@ func _on_area_2d_body_entered(body:Node2D):
 	if character and !active:
 		animation.play("Beeping")
 		active = true
-		timer.start(2.6)
+		timer.start(beep_time)
 
 func _on_explosion_radius_body_entered(body:Node2D):
 	var character := body as CharacterBody2D

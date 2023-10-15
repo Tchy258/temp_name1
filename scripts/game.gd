@@ -18,7 +18,7 @@ var roles := {}
 signal upnp_completed(error)
 
 # Replace this with your own server port number between 1024 and 65535.
-var server_port = Configs.port if Configs.port != null else 5409
+var server_port = Configs.port if Configs.port != 0 else 5409
 var thread = null
 
 
@@ -65,7 +65,7 @@ func is_online() -> bool:
 func sort_players() -> void:
 	players.sort_custom(func (a, b): return a.id < b.id)
 
-func _upnp_setup(server_port):
+func _upnp_setup(_server_port):
 	# UPNP queries take some time.
 	var upnp = UPNP.new()
 	var err = upnp.discover()
@@ -79,14 +79,14 @@ func _upnp_setup(server_port):
 
 	var gateway = upnp.get_gateway()
 	if gateway and gateway.is_valid_gateway():
-		upnp.add_port_mapping(server_port, server_port, ProjectSettings.get_setting("application/config/name"), "UDP")
-		upnp.add_port_mapping(server_port, server_port, ProjectSettings.get_setting("application/config/name"), "TCP")
+		upnp.add_port_mapping(_server_port, _server_port, ProjectSettings.get_setting("application/config/name"), "UDP")
+		upnp.add_port_mapping(_server_port, _server_port, ProjectSettings.get_setting("application/config/name"), "TCP")
 		print("signal2")
 		
 		emit_signal("upnp_completed", OK)
 
 func _ready():
-	server_port = Configs.port if Configs.port != null else 5409
+	server_port = Configs.port if Configs.port != 0 else 5409
 	thread = Thread.new()
 	thread.start(_upnp_setup.bind(server_port))
 	print("start")

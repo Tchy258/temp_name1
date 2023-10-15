@@ -2,10 +2,10 @@ extends Node
 
 var config_file = ConfigFile.new()
 
-var err = config_file.load("user://network_settings.cfg")
-var port: int
-var username: String
-var last_ip: String
+@onready var err = config_file.load("user://network_settings.cfg")
+var port: int = 5409
+var username: String = OS.get_environment("USERNAME") + (str(randi() % 1000) if Engine.is_editor_hint() else "")
+var last_ip: String = "127.0.0.1"
 
 signal config_loaded
 # If the file didn't load, ignore it.
