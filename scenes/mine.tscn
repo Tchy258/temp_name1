@@ -1,17 +1,51 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvu08ji78i4ey"]
+[gd_scene load_steps=19 format=3 uid="uid://cvu08ji78i4ey"]
 
 [ext_resource type="Script" path="res://scenes/mine.gd" id="1_3bsbv"]
-[ext_resource type="Texture2D" uid="uid://c6tt5nyksy0j1" path="res://assets/trap/Mine.png" id="2_a2opu"]
-[ext_resource type="Texture2D" uid="uid://ckjw6km3f3qod" path="res://assets/trap/Explosion.png" id="4_g5usw"]
-[ext_resource type="AudioStream" uid="uid://cy4fyjw6y00gm" path="res://assets/sounds/beep.ogg" id="5_js0h5"]
-[ext_resource type="AudioStream" uid="uid://bxhskksipk4nx" path="res://assets/sounds/explosion.ogg" id="7_gagvr"]
+[ext_resource type="Texture2D" uid="uid://d4lpi8klbu1b4" path="res://assets/trap/Mine.png" id="2_a2opu"]
+[ext_resource type="Texture2D" uid="uid://b4afav6cqekb5" path="res://assets/trap/Explosion.png" id="4_g5usw"]
+[ext_resource type="AudioStream" uid="uid://1e0xoa2ugpsq" path="res://assets/sounds/beep.ogg" id="5_js0h5"]
+[ext_resource type="AudioStream" uid="uid://rndl7k8gkg7j" path="res://assets/sounds/explosion.ogg" id="7_gagvr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5fnj"]
+size = Vector2(9, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxov8"]
 size = Vector2(28, 11)
 
+[sub_resource type="Animation" id="Animation_0mnbg"]
+resource_name = "Beeping"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Beep")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_js0h5")
+}],
+"times": PackedFloat32Array(0.6)
+}
+tracks/1/use_blend = true
+
 [sub_resource type="Animation" id="Animation_msn17"]
 resource_name = "Explosion"
-length = 3.0
+length = 4.0
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -37,23 +71,53 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
-tracks/2/type = "method"
+tracks/2/type = "audio"
 tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("..")
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Boom")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(3),
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_gagvr")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = false
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Sprite:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"queue_free"
+"method": &"explosion_damage"
+}, {
+"args": [],
+"method": &"mine_queue_free"
 }]
 }
 
 [sub_resource type="Animation" id="Animation_6sieh"]
-length = 0.001
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -64,27 +128,87 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
+"values": [72]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
 "values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jx5pk"]
 _data = {
+"Beeping": SubResource("Animation_0mnbg"),
 "Explosion": SubResource("Animation_msn17"),
 "RESET": SubResource("Animation_6sieh")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l24w2"]
 
-[node name="Mine" type="Node2D"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l7j55"]
+animation = &"Beeping"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_46igg"]
+animation = &"Explosion"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8lcle"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a8ows"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_045yn"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5spyf"]
+states/Beeping/node = SubResource("AnimationNodeAnimation_l7j55")
+states/Beeping/position = Vector2(405, 100)
+states/Explosion/node = SubResource("AnimationNodeAnimation_46igg")
+states/Explosion/position = Vector2(593, 101)
+transitions = ["Start", "Beeping", SubResource("AnimationNodeStateMachineTransition_8lcle"), "Beeping", "Explosion", SubResource("AnimationNodeStateMachineTransition_a8ows"), "Explosion", "End", SubResource("AnimationNodeStateMachineTransition_045yn")]
+graph_offset = Vector2(-51, -35)
+
+[node name="Mine" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 128
 script = ExtResource("1_3bsbv")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_m5fnj")
+
+[node name="Timer" type="Timer" parent="."]
+
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
 position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_qxov8")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+z_index = -1
 position = Vector2(-5, -1)
 texture = ExtResource("2_a2opu")
 centered = false
@@ -95,27 +219,31 @@ position = Vector2(0, -3)
 texture = ExtResource("4_g5usw")
 hframes = 10
 vframes = 8
+frame = 72
 
 [node name="Beep" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_js0h5")
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Explosion")
-speed_scale = 2.3
 libraries = {
 "": SubResource("AnimationLibrary_jx5pk")
 }
 
 [node name="Boom" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_gagvr")
-volume_db = -10.012
+volume_db = -14.614
 
 [node name="ExplosionRadius" type="Area2D" parent="."]
+collision_layer = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionRadius"]
 position = Vector2(0, -3)
 scale = Vector2(2.12, 2.08)
 shape = SubResource("CircleShape2D_l24w2")
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_5spyf")
+anim_player = NodePath("../Animation")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="ExplosionRadius" to="." method="_on_explosion_radius_body_entered"]
+[connection signal="body_exited" from="ExplosionRadius" to="." method="_on_explosion_radius_body_exited"]

@@ -10,6 +10,7 @@ var damage_max_time: int = 60
 var damage_timer: int = damage_max_time
 var blink_max_time: int = 3
 var blink_timer: int = blink_max_time
+
 @onready var player_camera = $Camera2D
 @onready var player_spr = $Sprite2D
 
@@ -21,7 +22,6 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 #	Debug.dprint(velocity)
-	
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
@@ -67,9 +67,10 @@ func bounce(collider_pos: Vector2) -> void:
 	self.velocity = direction*300
 
 func receive_damage(collider_pos: Vector2, x_force: int, y_force: int) -> void:
-	damage = true
-	var dir = sign(collider_pos - global_position)
-	self.velocity = Vector2(x_force * dir.x, -y_force)
+	if !damage:
+		damage = true
+		var dir = sign(global_position - collider_pos)
+		self.velocity = Vector2(x_force * dir.x, -y_force)
 	# self.position = Vector2(self.position.x, self.position.y - 2)
 
 

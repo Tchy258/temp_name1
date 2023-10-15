@@ -7,11 +7,23 @@
 [node name="Node2D" type="Node2D"]
 position = Vector2(46, 80)
 
-[node name="Player" parent="." instance=ExtResource("1_coeyc")]
-position = Vector2(82, -6)
+[node name="Mine5" parent="." instance=ExtResource("2_iyc6c")]
+position = Vector2(222, -59)
 
-[node name="Mine" parent="." instance=ExtResource("2_iyc6c")]
-position = Vector2(136, 0)
+[node name="Mine4" parent="." instance=ExtResource("2_iyc6c")]
+position = Vector2(160, -60)
+
+[node name="Player3" parent="." instance=ExtResource("1_coeyc")]
+position = Vector2(57, -28)
+
+[node name="Player2" parent="." instance=ExtResource("1_coeyc")]
+position = Vector2(41, -29)
+
+[node name="Mine3" parent="." instance=ExtResource("2_iyc6c")]
+position = Vector2(95, -57)
+
+[node name="Player" parent="." instance=ExtResource("1_coeyc")]
+position = Vector2(23, -29)
 
 [node name="Box" parent="." instance=ExtResource("2_romom")]
 position = Vector2(81, 64)
