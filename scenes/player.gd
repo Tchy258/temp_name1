@@ -15,6 +15,7 @@ func _ready():
 		player_camera.enabled = true
 	else:
 		player_camera.enabled = false
+	
 
 func _physics_process(delta: float) -> void:
 #	Debug.dprint(velocity)

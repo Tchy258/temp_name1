@@ -1,26 +1,140 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2pml8325o34q"]
+[gd_scene load_steps=20 format=3 uid="uid://b3mhsy021dqog"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_nkpbi"]
-[ext_resource type="Texture2D" uid="uid://byppys26r7672" path="res://assets/sprites/Meow Knight/Meow-Knight_Idle.png" id="2_brfrk"]
+[ext_resource type="Texture2D" uid="uid://d22a0dcrfx0ec" path="res://assets/sprites/Robots/Robots.png" id="2_ohe5e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s2jkn"]
-radius = 4.0
-height = 12.0
+radius = 3.0
+height = 10.0
 
-[node name="PlayerA" type="CharacterBody2D"]
-collision_mask = 193
+[sub_resource type="Animation" id="Animation_grtuv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_w17ho"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_aew7t"]
+resource_name = "jump"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_uswpp"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_io4ii"]
+_data = {
+"RESET": SubResource("Animation_grtuv"),
+"idle": SubResource("Animation_w17ho"),
+"jump": SubResource("Animation_aew7t"),
+"walk": SubResource("Animation_uswpp")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sfpim"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lr7cv"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mlki6"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dcirs"]
+
+[sub_resource type="Curve" id="Curve_hlykh"]
+_data = [Vector2(0.208738, 0.221053), 0.0, 0.0, 0, 0, Vector2(0.776699, 0.778947), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8trkk"]
+xfade_curve = SubResource("Curve_hlykh")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pkduj"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bn570"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nm63h"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4rmey"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tibsw"]
+states/idle/node = SubResource("AnimationNodeAnimation_sfpim")
+states/idle/position = Vector2(428, 23)
+states/jump/node = SubResource("AnimationNodeAnimation_lr7cv")
+states/jump/position = Vector2(611, 100)
+states/walk/node = SubResource("AnimationNodeAnimation_mlki6")
+states/walk/position = Vector2(428, 167)
+transitions = ["walk", "jump", SubResource("AnimationNodeStateMachineTransition_dcirs"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_8trkk"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_pkduj"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_bn570"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_nm63h"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_4rmey")]
+graph_offset = Vector2(0, -20.4561)
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+collision_mask = 129
 script = ExtResource("1_nkpbi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_s2jkn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 3)
-texture = ExtResource("2_brfrk")
-vframes = 6
+position = Vector2(0, -2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ohe5e")
+hframes = 8
+frame = 2
+region_enabled = true
+region_rect = Rect2(0, 384, 192, 32)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 editor_draw_drag_margin = true
@@ -29,3 +143,13 @@ editor_draw_drag_margin = true
 one_shot = true
 
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_io4ii")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_tibsw")
+anim_player = NodePath("../AnimationPlayer")
+active = true
