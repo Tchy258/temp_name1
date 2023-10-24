@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://udyl6lr6vq8n"]
+[gd_scene load_steps=11 format=3 uid="uid://udyl6lr6vq8n"]
 
 [ext_resource type="Script" path="res://scripts/ceiling_body.gd" id="1_x435k"]
 [ext_resource type="Texture2D" uid="uid://x2762w841lte" path="res://resources/ceiling_trap_texture.tres" id="2_1wqkh"]
@@ -60,6 +60,15 @@ _data = {
 "activate": SubResource("Animation_jh7ys")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6uvnw"]
+size = Vector2(16, 16)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1to2t"]
+properties/0/path = NodePath(".:is_auto_mode")
+properties/0/spawn = false
+properties/0/sync = false
+properties/0/watch = true
+
 [node name="CeilingArrowTrap" type="AnimatableBody2D"]
 scale = Vector2(2, 2)
 collision_layer = 64
@@ -81,11 +90,23 @@ libraries = {
 }
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." node_paths=PackedStringArray("arrow_spawn")]
+_spawnable_scenes = PackedStringArray("res://scenes/arrow_body.tscn")
 spawn_path = NodePath("../Marker2D")
-spawn_limit = 1
 script = ExtResource("4_amv8n")
 arrow_scene = ExtResource("3_ps24h")
 arrow_spawn = NodePath("../CeilingSprite")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, 2)
+
+[node name="ClickableArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea"]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_6uvnw")
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_1to2t")

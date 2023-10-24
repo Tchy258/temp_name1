@@ -38,10 +38,11 @@ func _process(delta):
 					
 
 func _on_body_entered(body: Node2D) -> void:
-	var colliding_body := body as CharacterBody2D
-	if colliding_body and colliding_body.has_method("bounce"):
+	var colliding_body := body as PlayerA
+	if colliding_body:
 		var distance_to_center = 17 if !far_end.disabled else 0
-		colliding_body.bounce(self.global_position - Vector2(0,distance_to_center))
+		var y_force = 200 * sign(global_position.y - distance_to_center - colliding_body.global_position.y)
+		colliding_body.receive_damage(self.global_position - Vector2(0,distance_to_center),100,y_force,0.5)
 
 @rpc("call_local","reliable")
 func process_input() -> void:

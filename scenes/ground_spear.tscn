@@ -1,7 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://djv1rc6fw3m4o"]
+[gd_scene load_steps=24 format=3 uid="uid://djv1rc6fw3m4o"]
 
 [ext_resource type="Script" path="res://scenes/ground_spear.gd" id="1_fqnap"]
-[ext_resource type="Texture2D" uid="uid://cwbkx6y6wqmh1" path="res://assets/trap/Spear.png" id="2_oe848"]
+[ext_resource type="Texture2D" uid="uid://ddcn4i8uo5n23" path="res://assets/trap/Spear.png" id="2_oe848"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhjhk"]
 size = Vector2(6, 42)
@@ -195,6 +195,12 @@ properties/0/path = NodePath(".:position")
 properties/0/spawn = false
 properties/0/sync = false
 properties/0/watch = true
+properties/1/path = NodePath(".:is_auto_mode")
+properties/1/spawn = false
+properties/1/sync = false
+properties/1/watch = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4xr28"]
 
 [node name="GroundSpear" type="AnimatableBody2D"]
 collision_layer = 64
@@ -226,7 +232,6 @@ sprite_frames = SubResource("SpriteFrames_guhre")
 [node name="SpearCollision" type="CollisionShape2D" parent="Pivot/CollisionDetector"]
 position = Vector2(0.5, 23)
 shape = SubResource("CapsuleShape2D_pjqm4")
-disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -235,3 +240,12 @@ libraries = {
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_dehx0")
+
+[node name="AutomaticTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ClickableArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea"]
+shape = SubResource("RectangleShape2D_4xr28")

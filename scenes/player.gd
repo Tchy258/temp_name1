@@ -6,12 +6,9 @@ var jump_speed = 250
 var acceleration = 1500
 var gravity = 450
 var damage: bool = false
-var damage_max_time: int = 60
-var damage_timer: int = damage_max_time
-var blink_max_time: int = 3
-var blink_timer: int = blink_max_time
 @onready var player_camera = $Camera2D
 @onready var player_spr = $Sprite2D
+@onready var damage_timer = $DamageTimer
 
 func _ready():
 	if is_multiplayer_authority():
@@ -34,25 +31,11 @@ func _physics_process(delta: float) -> void:
 			
 			velocity.x = move_toward(velocity.x, max_speed * move_input, acceleration * delta)
 		else:
-			if is_on_floor() && damage_timer < damage_max_time - 2:
-				velocity.x = 0
-
-			if damage_timer <= 0:
-				damage_timer = damage_max_time
-				damage = false
-				blink_timer = blink_max_time
-				player_spr.visible = true
-			else:
-				damage_timer -= 1
-				if blink_timer <= 0:
-					player_spr.visible = !player_spr.visible
-					blink_timer = blink_max_time
-				else:
-					blink_timer -= 1
-				
+			if is_on_floor():
+				velocity.x *= 0.8
 		send_info.rpc(global_position, velocity)
-#	else:
-#		pass
+	if damage:
+		player_spr.visible = !player_spr.visible
 
 	move_and_slide()
 
@@ -65,9 +48,10 @@ func bounce(collider_pos: Vector2) -> void:
 	var direction = (global_position - collider_pos).normalized()
 	self.velocity = direction*400
 
-func receive_damage(collider_pos: Vector2, x_force: int, y_force: int) -> void:
+func receive_damage(collider_pos: Vector2, x_force: int, y_force: int, hitstun: float = 1.0) -> void:
 	if !damage:
 		damage = true
+		damage_timer.start(hitstun)
 		var dir = sign(global_position - collider_pos)
 		self.velocity = Vector2(x_force * dir.x, -y_force)
 	# self.position = Vector2(self.position.x, self.position.y - 2)
@@ -96,3 +80,8 @@ func setup(player_data: Game.PlayerData):
 func test():
 #	if is_multiplayer_authority():
 	Debug.dprint("test - player: %s" % name, 30)
+
+
+func _on_damage_timer_timeout():
+	damage = false
+	player_spr.visible = true

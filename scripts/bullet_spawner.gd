@@ -12,18 +12,18 @@ func _ready() -> void:
 
 
 func fire() -> void:
-	fire_sever.rpc(Vector2(0,1))
+	if is_multiplayer_authority():
+		fire_sever.rpc(Vector2(0,1))
 
 
 @rpc("any_peer", "call_local")
 func fire_sever(_target: Vector2) -> void:
 	if not arrow_scene or not arrow_spawn:
 		return
-	if get_child_count(true) == 0:
-		var bullet = arrow_scene.instantiate()
-		bullet.connect("should_be_freed",_on_free)
-		bullet.global_position = arrow_spawn.global_position
-		add_child(bullet, true)
+	var bullet = arrow_scene.instantiate()
+	bullet.connect("should_be_freed",_on_free)
+	bullet.global_position = arrow_spawn.global_position
+	add_child(bullet, true)
 			
 
 func _on_free() -> void:
