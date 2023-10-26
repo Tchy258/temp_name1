@@ -7,9 +7,10 @@ var acceleration = 1500
 var gravity = 450
 var damage: bool = false
 @onready var player_camera = $Camera2D
-@onready var player_spr = $Sprite2D
+@onready var pivot = $Pivot
+@onready var player_spr = $Pivot/Sprite2D
 @onready var damage_timer = $DamageTimer
-
+@onready var animation= $AnimationTree.get("parameters/playback")
 func _ready():
 	if is_multiplayer_authority():
 		player_camera.enabled = true
@@ -25,9 +26,22 @@ func _physics_process(delta: float) -> void:
 	if is_multiplayer_authority():
 		if !damage:
 			var move_input = Input.get_axis("move_left", "move_right")
-			
+			if is_on_floor():
+				if is_zero_approx(move_input):
+					animation.travel("idle")
+				elif move_input>0.5:
+					animation.travel("walk")
+				elif move_input < -0.5:
+					animation.travel("walk")
+			if move_input>0.5:
+				pivot.scale.x=1
+			if move_input < -0.5:
+				pivot.scale.x=-1
+				
+				
 			if Input.is_action_just_pressed("jump") and is_on_floor():
 				jump.rpc()
+				animation.travel("jump")
 #				jump()
 			
 			velocity.x = move_toward(velocity.x, max_speed * move_input, acceleration * delta)
