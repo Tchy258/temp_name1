@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c6v21eln1hux6"]
 
 [ext_resource type="Script" path="res://scenes/arrow_body.gd" id="1_oef5f"]
-[ext_resource type="Texture2D" uid="uid://ccdqdxwu071dq" path="res://assets/trap/Shooter_Arrow_Trap.png" id="1_psujw"]
+[ext_resource type="Texture2D" uid="uid://buqmhfax47dbv" path="res://assets/trap/Shooter_Arrow_Trap.png" id="1_psujw"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6ew52"]
 emission_shape = 3
