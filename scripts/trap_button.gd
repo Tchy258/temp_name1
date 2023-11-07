@@ -5,6 +5,7 @@ signal emit_self
 @export var trap: TrapManager.traps
 @export var trap_props: Dictionary = {
 	"scale": Vector2(1,1),
+	"can_be_rotated": false
 }
 # Called when the node enters the scene tree for the first time.
 func _ready():

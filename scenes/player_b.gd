@@ -53,6 +53,8 @@ func trap_click():
 	trap_placer.sprite.texture = trap_to_place
 	trap_placer.enabled = true
 	trap_placer.scale = trap_props.scale
+	if trap_props.get("can_be_rotated"):
+		trap_placer.can_be_rotated = true
 	trap_placer.visible = true
 	trap_placer.lifted = true
 	trap_placer.position = base_placer_position
@@ -62,7 +64,8 @@ func trap_click():
 func _reset_placer():
 	current_button.disabled = false
 	current_state = State.MAP_WATCH
-	
+	trap_placer.sprite.rotation = 0
+	trap_placer.can_be_rotated = false
 
 
 func _on_trap_placed(trap_position: Vector2):

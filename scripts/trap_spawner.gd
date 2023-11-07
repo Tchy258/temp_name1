@@ -10,6 +10,7 @@ func place(trap_id: TrapManager.traps, _position: Vector2) -> void:
 	trap.player_id = get_parent().this_player_data.id
 	print(trap.player_id)
 	trap.global_position = trap_spawn.global_position
+	trap.rotation = trap_spawn.sprite.rotation
 	container.add_child(trap, true)
 	trap.init.rpc(trap.player_id,trap.global_position)
 

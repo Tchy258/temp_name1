@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bv41q3q1njybb"]
+[gd_scene load_steps=4 format=3 uid="uid://bv41q3q1njybb"]
 
 [ext_resource type="Script" path="res://scripts/draggable_trap.gd" id="1_liboj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4m04m"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_s46hs"]
+properties/0/path = NodePath("Sprite2D:rotation")
+properties/0/spawn = false
+properties/0/sync = false
+properties/0/watch = true
 
 [node name="DraggableTrap" type="Area2D"]
 collision_layer = 128
@@ -14,3 +20,6 @@ shape = SubResource("RectangleShape2D_4m04m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.360784)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_s46hs")

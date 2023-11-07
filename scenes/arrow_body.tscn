@@ -43,10 +43,11 @@ _data = {
 [node name="ArrowBody" type="RigidBody2D"]
 collision_layer = 2
 collision_mask = 129
-gravity_scale = 0.5
+center_of_mass_mode = 1
+center_of_mass = Vector2(0, -12)
+gravity_scale = 0.25
 max_contacts_reported = 1
 contact_monitor = true
-linear_velocity = Vector2(0, 70)
 script = ExtResource("1_oef5f")
 
 [node name="Container" type="Node2D" parent="."]

@@ -22,6 +22,7 @@ func fire_sever(_target: Vector2) -> void:
 		return
 	var bullet = arrow_scene.instantiate()
 	bullet.connect("should_be_freed",_on_free)
+	bullet.global_rotation = get_parent().rotation
 	bullet.global_position = arrow_spawn.global_position
 	add_child(bullet, true)
 			

@@ -26,18 +26,18 @@ func _on_mouse_exited() -> void:
 func process_input() -> void:
 	if not animation_player.is_playing():
 			animation_player.play("activate")
+			cooldown_timer.start()
 			
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if is_multiplayer_authority():
-		if Input.is_action_just_pressed("l_click") and is_ready and is_selected and !is_auto_mode:
-			cooldown_timer.start()
-			is_ready = false
-			process_input.rpc()
 		if Input.is_action_just_pressed("automode") and is_ready and is_selected:
-			cooldown_timer.start()
 			is_auto_mode = !is_auto_mode
+			if is_auto_mode:
+				process_input.rpc()
+		elif Input.is_action_just_pressed("l_click") and is_ready and is_selected and !is_auto_mode:
+			is_ready = false
 			process_input.rpc()
 
 

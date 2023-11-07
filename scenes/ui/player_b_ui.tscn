@@ -47,6 +47,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("2_xsp0f")
 trap_props = {
+"can_be_rotated": true,
 "scale": Vector2(2, 2)
 }
 
