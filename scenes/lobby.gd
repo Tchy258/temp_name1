@@ -251,7 +251,7 @@ func starting_game(value: bool):
 @rpc("any_peer", "call_local", "reliable")
 func start_game() -> void:
 	var tree = get_tree()
-	tree.call_deferred("change_scene_to_file","res://scenes/main.tscn")
+	tree.call_deferred("change_scene_to_file","res://scenes/level2.tscn")
 
 
 
