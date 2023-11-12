@@ -14,6 +14,11 @@ var players: Array[PlayerData] = []
 
 var roles := {}
 
+const stages: Dictionary = {
+	"Stage1": "level1.tscn",
+	"Stage2": "level2.tscn",
+}
+
 # Emitted when UPnP port mapping setup is completed (regardless of success or failure).
 signal upnp_completed(error)
 

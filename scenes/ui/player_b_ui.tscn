@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxaqx4j3qo536"]
+[gd_scene load_steps=9 format=3 uid="uid://cxaqx4j3qo536"]
 
-[ext_resource type="Texture2D" uid="uid://mm3vkswf4l5b" path="res://assets/trap/ceiling_trap_1.png" id="1_l38im"]
+[ext_resource type="Texture2D" uid="uid://dnpaqqv00xirt" path="res://assets/trap/ceiling_trap_1.png" id="1_l38im"]
 [ext_resource type="Script" path="res://scenes/ui/player2_canvas.gd" id="2_aocac"]
 [ext_resource type="Script" path="res://scripts/trap_button.gd" id="2_xsp0f"]
 [ext_resource type="Script" path="res://scripts/player_2_camera.gd" id="4_hsj0s"]
-[ext_resource type="Texture2D" uid="uid://bil1sk0juscc0" path="res://assets/trap/spear_1.png" id="5_yra6b"]
-[ext_resource type="Texture2D" uid="uid://doe0sivu46pur" path="res://assets/trap/mine1.png" id="6_71l80"]
-[ext_resource type="Texture2D" uid="uid://ceyhpwgmwtqaf" path="res://assets/trap/fire_icon.png" id="6_byab6"]
+[ext_resource type="Texture2D" uid="uid://qrdetv14jtqj" path="res://assets/trap/spear_1.png" id="5_yra6b"]
+[ext_resource type="Texture2D" uid="uid://doadycrhpqhib" path="res://assets/trap/mine1.png" id="6_71l80"]
+[ext_resource type="Texture2D" uid="uid://c24uli8opc2de" path="res://assets/trap/fire_icon.png" id="6_byab6"]
+[ext_resource type="Texture2D" uid="uid://cerl7uubc0fvq" path="res://assets/trap/Fan_icon.png" id="8_a7qpf"]
 
 [node name="Camera2D" type="Camera2D"]
 scale = Vector2(2, 2)
@@ -29,8 +30,8 @@ mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Ui"]
 layout_mode = 1
-offset_right = 480.0
-offset_bottom = 270.0
+offset_right = 88.0
+offset_bottom = 272.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Ui/MarginContainer"]
 layout_mode = 2
@@ -54,6 +55,7 @@ trap_props = {
 [node name="GroundSpear" type="Button" parent="CanvasLayer/Ui/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
+action_mode = 0
 icon = ExtResource("5_yra6b")
 icon_alignment = 1
 expand_icon = true
@@ -63,6 +65,7 @@ trap = 1
 [node name="Mine" type="Button" parent="CanvasLayer/Ui/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
+action_mode = 0
 icon = ExtResource("6_71l80")
 icon_alignment = 1
 expand_icon = true
@@ -72,9 +75,21 @@ trap = 2
 [node name="FireTrap" type="Button" parent="CanvasLayer/Ui/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-theme_override_constants/icon_max_width = 5
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+action_mode = 0
 icon = ExtResource("6_byab6")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("2_xsp0f")
 trap = 3
+
+[node name="FanTrap" type="Button" parent="CanvasLayer/Ui/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_vertical = 3
+icon = ExtResource("8_a7qpf")
+icon_alignment = 1
+script = ExtResource("2_xsp0f")
+trap = 4

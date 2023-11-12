@@ -6,11 +6,14 @@ var jump_speed = 250
 var acceleration = 1500
 var gravity = 450
 var damage: bool = false
+var in_wind:bool=false
+var wind_velocity:Vector2
 @onready var player_camera = $Camera2D
 @onready var pivot = $Pivot
 @onready var player_spr = $Pivot/Sprite2D
 @onready var damage_timer = $DamageTimer
 @onready var animation= $AnimationTree.get("parameters/playback")
+
 func _ready():
 	if is_multiplayer_authority():
 		player_camera.enabled = true
@@ -22,7 +25,9 @@ func _physics_process(delta: float) -> void:
 #	Debug.dprint(velocity)
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	
+	if in_wind:
+		velocity+=wind_velocity*delta
+		animation.travel("jump")
 	if is_multiplayer_authority():
 		if !damage:
 			var move_input = Input.get_axis("move_left", "move_right")
