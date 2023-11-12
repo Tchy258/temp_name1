@@ -27,6 +27,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity * delta
 	if in_wind:
 		velocity+=wind_velocity*delta
+		animation.travel("jump")
 	if is_multiplayer_authority():
 		if !damage:
 			var move_input = Input.get_axis("move_left", "move_right")
