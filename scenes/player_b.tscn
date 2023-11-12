@@ -8,11 +8,10 @@
 [node name="PlayerB" type="Node2D"]
 script = ExtResource("1_lwthv")
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." node_paths=PackedStringArray("trap_spawn")]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://scenes/ceiling_trap.tscn", "res://scenes/ground_spear.tscn", "res://scenes/fire_trap.tscn", "res://scenes/mine.tscn", "res://scenes/fan_trap.tscn")
 spawn_path = NodePath("../TrapContainer")
 script = ExtResource("3_4i6i3")
-trap_spawn = NodePath("../DraggableTrap")
 
 [node name="DraggableTrap" parent="." instance=ExtResource("5_sgo1j")]
 top_level = true

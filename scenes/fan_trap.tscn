@@ -96,18 +96,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WindBox/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x5s3e"]
 _data = {
@@ -165,16 +153,20 @@ properties/1/path = NodePath(".:position")
 properties/1/spawn = false
 properties/1/sync = false
 properties/1/watch = true
+properties/2/path = NodePath(".:rotation")
+properties/2/spawn = false
+properties/2/sync = false
+properties/2/watch = true
 
-[node name="FanTrap" type="AnimatableBody2D"]
+[node name="FanTrap" type="CharacterBody2D"]
 collision_layer = 64
 collision_mask = 129
-sync_to_physics = false
 script = ExtResource("1_qku4h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_oljpr")
 hframes = 8
+region_rect = Rect2(0, 0, 32, 32)
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
@@ -204,8 +196,6 @@ disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea"]
 shape = SubResource("RectangleShape2D_5co6w")
-
-[node name="Rotator" type="Marker2D" parent="."]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_jlo4x")

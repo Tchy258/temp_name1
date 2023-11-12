@@ -58,7 +58,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_8b1ct"]
 resource_name = "jump"
-length = 0.1
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -67,10 +67,10 @@ tracks/0/path = NodePath("Pivot/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0.0102777, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 8]
 }
 
 [sub_resource type="Animation" id="Animation_aew7t"]
@@ -174,14 +174,10 @@ transitions = ["walk", "idle", SubResource("AnimationNodeStateMachineTransition_
 graph_offset = Vector2(0, 3.4094)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lg4eg"]
-properties/0/path = NodePath("AnimationPlayer:current_animation")
+properties/0/path = NodePath("Pivot:scale")
 properties/0/spawn = false
 properties/0/sync = false
 properties/0/watch = true
-properties/1/path = NodePath("Pivot:scale")
-properties/1/spawn = false
-properties/1/sync = false
-properties/1/watch = true
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(2, 2)

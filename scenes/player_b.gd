@@ -68,14 +68,15 @@ func _reset_placer():
 	trap_placer.can_be_rotated = false
 
 
-func _on_trap_placed(trap_position: Vector2):
+func _on_trap_placed(trap_position: Vector2, trap_rotation):
 	if !is_multiplayer_authority(): return
-	spawner.place(current_trap,trap_position)
+	spawner.place(current_trap,trap_position, trap_rotation)
 	trap_placer.disconnect("canceled",_on_trap_canceled)
 	_reset_placer()
 	
 func _on_trap_canceled():
 	if !is_multiplayer_authority(): return
+	trap_placer.disconnect("placed",_on_trap_placed)
 	_reset_placer()
 
 func setup(player_data: Game.PlayerData):

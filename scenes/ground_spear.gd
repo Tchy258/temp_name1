@@ -1,4 +1,4 @@
-extends AnimatableBody2D
+extends CharacterBody2D
 @onready var animation_player = $AnimationPlayer
 @export var player_id: int
 @onready var collision_detector = $Pivot/CollisionDetector
@@ -6,10 +6,9 @@ extends AnimatableBody2D
 @onready var automatic_timer = $AutomaticTimer
 @onready var clickable_area = $ClickableArea
 var is_selected = false
-var reached_floor = false
 @export var is_auto_mode = false
 var speed = 0
-const GRAVITY = 9
+const GRAVITY = 400
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,18 +22,14 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
 	if is_multiplayer_authority():
-		if Input.is_action_just_pressed("l_click") and is_selected and reached_floor and not is_auto_mode:
+		if Input.is_action_just_pressed("l_click") and is_selected and is_on_floor() and not is_auto_mode:
 			process_input.rpc()
-		if Input.is_action_just_pressed("automode") and is_selected and reached_floor:
+		if Input.is_action_just_pressed("automode") and is_selected and is_on_floor():
 			is_auto_mode = !is_auto_mode
 			process_input.rpc()
-		if !reached_floor:
-			speed += min(GRAVITY * delta, 5)
-			var colliders = move_and_collide(Vector2(0,speed))
-			if colliders:
-				var stage := colliders.get_collider() as TileMap
-				if stage:
-					reached_floor = true
+		if !is_on_floor():
+			velocity.y += GRAVITY * delta
+			move_and_slide()
 		
 
 func _on_mouse_entered() -> void:
@@ -46,7 +41,7 @@ func _on_mouse_exited() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	var colliding_body := body as PlayerA
-	if colliding_body and colliding_body.has_method("bounce"):
+	if colliding_body and colliding_body.has_method("receive_damage"):
 		colliding_body.receive_damage(global_position,100,300,1.2)
 
 

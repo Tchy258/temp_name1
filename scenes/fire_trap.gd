@@ -1,4 +1,4 @@
-extends AnimatableBody2D
+extends CharacterBody2D
 
 @onready var area = $ClickableArea
 @onready var area_shape = $ClickableArea/CollisionShape2D
@@ -6,10 +6,10 @@ extends AnimatableBody2D
 @onready var collision_detector = $CollisionDetector
 @onready var far_end = $CollisionDetector/Square2
 var is_selected = false
-var reached_floor = false
+
 var speed = 0
 var player_id
-const GRAVITY = 9
+const GRAVITY = 400
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	collision_detector.connect("body_entered",_on_body_entered)
@@ -23,18 +23,16 @@ func _on_mouse_exited() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_multiplayer_authority():
-		if Input.is_action_just_pressed("l_click") and is_selected and reached_floor:
+		if Input.is_action_just_pressed("l_click") and is_selected and is_on_floor():
 			process_input.rpc()
-		if !reached_floor:
-			speed += min(GRAVITY * delta, 5)
-			var colliders = move_and_collide(Vector2(0,speed))
-			if colliders:
-				var stage := colliders.get_collider() as TileMap
-				if stage:
-					reached_floor = true
-					area.connect("mouse_entered",_on_mouse_entered)
-					area.connect("mouse_exited",_on_mouse_exited)
-					area_shape.disabled = false
+		if !is_on_floor():
+			velocity.y += GRAVITY * delta
+			move_and_slide()
+		if is_on_floor() and area_shape.disabled:
+			area.connect("mouse_entered",_on_mouse_entered)
+			area.connect("mouse_exited",_on_mouse_exited)
+			area_shape.disabled = false
+					
 					
 
 func _on_body_entered(body: Node2D) -> void:

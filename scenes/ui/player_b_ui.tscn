@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://qrdetv14jtqj" path="res://assets/trap/spear_1.png" id="5_yra6b"]
 [ext_resource type="Texture2D" uid="uid://doadycrhpqhib" path="res://assets/trap/mine1.png" id="6_71l80"]
 [ext_resource type="Texture2D" uid="uid://c24uli8opc2de" path="res://assets/trap/fire_icon.png" id="6_byab6"]
-[ext_resource type="Texture2D" uid="uid://cerl7uubc0fvq" path="res://assets/trap/Fan_icon.png" id="8_a7qpf"]
+[ext_resource type="Texture2D" uid="uid://dvb5y5hm5vwum" path="res://assets/trap/Fan_1.png" id="8_7rcmn"]
 
 [node name="Camera2D" type="Camera2D"]
 scale = Vector2(2, 2)
@@ -89,7 +89,12 @@ trap = 3
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_vertical = 3
-icon = ExtResource("8_a7qpf")
+icon = ExtResource("8_7rcmn")
 icon_alignment = 1
+expand_icon = true
 script = ExtResource("2_xsp0f")
 trap = 4
+trap_props = {
+"can_be_rotated": true,
+"scale": Vector2(1, 1)
+}

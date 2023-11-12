@@ -202,12 +202,11 @@ properties/1/watch = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4xr28"]
 
-[node name="GroundSpear" type="AnimatableBody2D"]
+[node name="GroundSpear" type="CharacterBody2D"]
 collision_layer = 64
 collision_mask = 129
 collision_priority = 2.0
 input_pickable = true
-sync_to_physics = false
 script = ExtResource("1_fqnap")
 
 [node name="ActivatedObjectCollision" type="CollisionShape2D" parent="."]

@@ -1,13 +1,8 @@
 [gd_scene load_steps=27 format=3 uid="uid://btvgqfedq4q34"]
 
 [ext_resource type="Script" path="res://scenes/fire_trap.gd" id="1_an3fo"]
-<<<<<<< HEAD
-[ext_resource type="Texture2D" uid="uid://bbtwwsq3edhko" path="res://assets/trap/FireBox.png" id="1_o3ju6"]
-[ext_resource type="Texture2D" uid="uid://cg5sn8mfrho16" path="res://assets/trap/Effect and Bullet 16x16/Fire Effect and Bullet 16x16.png" id="2_ibf3o"]
-=======
-[ext_resource type="Texture2D" uid="uid://ccperhefhklcu" path="res://assets/trap/FireBox.png" id="1_o3ju6"]
+[ext_resource type="Texture2D" uid="uid://eycf74wbri0d" path="res://assets/trap/FireBox.png" id="1_o3ju6"]
 [ext_resource type="Texture2D" uid="uid://bmag2plt613np" path="res://assets/trap/Effect and Bullet 16x16/Fire Effect and Bullet 16x16.png" id="2_ibf3o"]
->>>>>>> main
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0kmre"]
 size = Vector2(12, 16)
@@ -428,10 +423,9 @@ properties/0/spawn = false
 properties/0/sync = false
 properties/0/watch = true
 
-[node name="FireTrap" type="AnimatableBody2D"]
+[node name="FireTrap" type="CharacterBody2D"]
 collision_layer = 64
 collision_mask = 129
-sync_to_physics = false
 script = ExtResource("1_an3fo")
 
 [node name="TrapBody" type="Sprite2D" parent="."]

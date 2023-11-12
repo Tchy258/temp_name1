@@ -1,4 +1,4 @@
-extends AnimatableBody2D
+extends CharacterBody2D
 
 
 @onready var animation_player = $AnimationPlayer
@@ -39,6 +39,7 @@ func _process(_delta: float) -> void:
 		elif Input.is_action_just_pressed("l_click") and is_ready and is_selected and !is_auto_mode:
 			is_ready = false
 			process_input.rpc()
+		#send_info.rpc(global_position,rotation)
 
 
 func setup(player_data: Game.PlayerData):
@@ -52,7 +53,8 @@ func init(id:int, global_pos: Vector2):
 	set_multiplayer_authority(id)
 	player_id = id
 	global_position = global_pos
-	
+
+
 func _on_cooldown_timeout():
 	is_ready = true
 	if is_auto_mode:

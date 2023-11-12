@@ -7,12 +7,13 @@ var acceleration = 1500
 var gravity = 450
 var damage: bool = false
 var in_wind:bool=false
-var wind_velocity:Vector2
+var wind_velocity:Vector2 = Vector2.ZERO
 @onready var player_camera = $Camera2D
 @onready var pivot = $Pivot
 @onready var player_spr = $Pivot/Sprite2D
 @onready var damage_timer = $DamageTimer
 @onready var animation= $AnimationTree.get("parameters/playback")
+@onready var animation_player = $AnimationPlayer
 
 func _ready():
 	if is_multiplayer_authority():
@@ -25,9 +26,9 @@ func _physics_process(delta: float) -> void:
 #	Debug.dprint(velocity)
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	if in_wind:
-		velocity+=wind_velocity*delta
 		animation.travel("jump")
+	if in_wind:
+		velocity.y += wind_velocity.y*delta
 	if is_multiplayer_authority():
 		if !damage:
 			var move_input = Input.get_axis("move_left", "move_right")
@@ -49,11 +50,12 @@ func _physics_process(delta: float) -> void:
 				animation.travel("jump")
 #				jump()
 			
-			velocity.x = move_toward(velocity.x, max_speed * move_input, acceleration * delta)
+			velocity.x = move_toward(velocity.x, (max_speed * move_input) + wind_velocity.x, acceleration * delta)
 		else:
 			if is_on_floor():
 				velocity.x *= 0.8
-		send_info.rpc(global_position, velocity)
+		var current_animation = animation.get_current_node()
+		send_info.rpc(global_position, velocity, current_animation)
 	if damage:
 		player_spr.visible = !player_spr.visible
 
@@ -77,11 +79,12 @@ func receive_damage(collider_pos: Vector2, x_force: int, y_force: int, hitstun: 
 	# self.position = Vector2(self.position.x, self.position.y - 2)
 
 
-@rpc("unreliable_ordered")
-func send_info(pos: Vector2, vel: Vector2) -> void:
+@rpc("unreliable_ordered","authority")
+func send_info(pos: Vector2, vel: Vector2,anim: String) -> void:
 	global_position = lerp(global_position, pos, 0.5)
 	velocity = lerp(velocity, vel, 0.5)
-
+	if animation.get_current_node() != anim:
+		animation.travel(anim)
 
 @rpc("call_local", "reliable")
 func jump():
@@ -105,3 +108,8 @@ func test():
 func _on_damage_timer_timeout():
 	damage = false
 	player_spr.visible = true
+
+@rpc("call_local","reliable","any_peer")
+func set_wind(vel, status):
+	in_wind = status
+	wind_velocity = vel

@@ -1,4 +1,4 @@
-extends AnimatableBody2D
+extends CharacterBody2D
 
 @onready var area_shape = $ClickableArea/CollisionShape2D
 @onready var area = $ClickableArea
@@ -9,7 +9,7 @@ extends AnimatableBody2D
 @onready var animation= $AnimationTree.get("parameters/playback")
 
 var is_selected = false
-var reached_floor = false
+
 var speed = 0
 var player_id
 const GRAVITY = 9
@@ -19,7 +19,8 @@ var in_wind=[]
 func _ready():
 	wind_box.connect("body_entered",_on_body_entered)
 	wind_box.connect("body_exited", _on_body_exited)
-	area_shape.disabled = true
+	area.connect("mouse_entered",_on_mouse_entered)
+	area.connect("mouse_exited",_on_mouse_exited)
 
 
 func _on_mouse_entered() -> void:
@@ -31,31 +32,19 @@ func _on_mouse_exited() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_multiplayer_authority():
-		if Input.is_action_just_pressed("l_click") and is_selected and reached_floor:
+		if Input.is_action_just_pressed("l_click") and is_selected:
 			process_input.rpc()
-		if !reached_floor:
-			speed += min(GRAVITY * delta, 5)
-			var colliders = move_and_collide(Vector2(0,speed))
-			if colliders:
-				var stage := colliders.get_collider() as TileMap
-				if stage:
-					reached_floor = true
-					area.connect("mouse_entered",_on_mouse_entered)
-					area.connect("mouse_exited",_on_mouse_exited)
-					area_shape.disabled = false
 
 func _on_body_entered(body: Node2D) -> void:
 	var colliding_body := body as PlayerA
 	if colliding_body:
-		colliding_body.in_wind=true
-		colliding_body.wind_velocity=-transform.y*1000
-		print(colliding_body)
+		colliding_body.set_wind.rpc(-transform.y*1000, true)
+
 
 func _on_body_exited(body:Node2D)-> void:
 	var colliding_body := body as PlayerA
 	if colliding_body:
-		colliding_body.in_wind=false
-		colliding_body.wind_velocity=Vector2.ZERO
+		colliding_body.set_wind.rpc(Vector2.ZERO, false)
 
 @rpc("call_local","reliable")
 func process_input() -> void:
