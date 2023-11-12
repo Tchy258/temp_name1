@@ -1,8 +1,8 @@
 [gd_scene load_steps=27 format=3 uid="uid://btvgqfedq4q34"]
 
 [ext_resource type="Script" path="res://scenes/fire_trap.gd" id="1_an3fo"]
-[ext_resource type="Texture2D" uid="uid://cjs3u7epf2k1r" path="res://assets/trap/FireBox.png" id="1_o3ju6"]
-[ext_resource type="Texture2D" uid="uid://bogj1svqu5fsl" path="res://assets/trap/Effect and Bullet 16x16/Fire Effect and Bullet 16x16.png" id="2_ibf3o"]
+[ext_resource type="Texture2D" uid="uid://ccperhefhklcu" path="res://assets/trap/FireBox.png" id="1_o3ju6"]
+[ext_resource type="Texture2D" uid="uid://bmag2plt613np" path="res://assets/trap/Effect and Bullet 16x16/Fire Effect and Bullet 16x16.png" id="2_ibf3o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0kmre"]
 size = Vector2(12, 16)

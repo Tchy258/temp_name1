@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=3 uid="uid://b3mhsy021dqog"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_nkpbi"]
-[ext_resource type="Texture2D" uid="uid://d22a0dcrfx0ec" path="res://assets/sprites/Robots/Robots.png" id="2_ohe5e"]
+[ext_resource type="Texture2D" uid="uid://bletmsyi8yrrc" path="res://assets/sprites/Robots/Robots.png" id="2_ohe5e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s2jkn"]
 radius = 3.0
@@ -22,6 +22,22 @@ tracks/0/keys = {
 "values": [3]
 }
 
+[sub_resource type="Animation" id="Animation_vg20i"]
+resource_name = "fall"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
 [sub_resource type="Animation" id="Animation_w17ho"]
 resource_name = "idle"
 length = 0.666675
@@ -38,39 +54,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_uswpp"]
-resource_name = "walk"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [3, 4, 5, 6]
-}
-
-[sub_resource type="Animation" id="Animation_aew7t"]
-resource_name = "jump_start"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [2, 1, 0]
 }
 
 [sub_resource type="Animation" id="Animation_8b1ct"]
@@ -90,9 +73,9 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_vg20i"]
-resource_name = "fall"
-length = 0.4
+[sub_resource type="Animation" id="Animation_aew7t"]
+resource_name = "jump_start"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -103,7 +86,24 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_uswpp"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_io4ii"]
