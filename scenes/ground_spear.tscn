@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://djv1rc6fw3m4o"]
 
 [ext_resource type="Script" path="res://scenes/ground_spear.gd" id="1_fqnap"]
-[ext_resource type="Texture2D" uid="uid://b4p78uwk8xqqf" path="res://assets/trap/Spear.png" id="2_oe848"]
+[ext_resource type="Texture2D" uid="uid://d2sqlw1c1xm37" path="res://assets/trap/Spear.png" id="2_oe848"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhjhk"]
 size = Vector2(6, 42)

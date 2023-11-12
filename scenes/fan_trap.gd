@@ -48,7 +48,7 @@ func _on_body_entered(body: Node2D) -> void:
 	var colliding_body := body as PlayerA
 	if colliding_body:
 		colliding_body.in_wind=true
-		colliding_body.wind_velocity=-transform.y*460
+		colliding_body.wind_velocity=-transform.y*1000
 		print(colliding_body)
 
 func _on_body_exited(body:Node2D)-> void:

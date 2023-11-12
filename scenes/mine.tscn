@@ -1,10 +1,10 @@
 [gd_scene load_steps=19 format=3 uid="uid://cvu08ji78i4ey"]
 
 [ext_resource type="Script" path="res://scenes/mine.gd" id="1_3bsbv"]
-[ext_resource type="Texture2D" uid="uid://c4j0e7a2onmbw" path="res://assets/trap/Mine.png" id="2_a2opu"]
-[ext_resource type="Texture2D" uid="uid://c2e2gj3ombx1k" path="res://assets/trap/Explosion.png" id="4_g5usw"]
-[ext_resource type="AudioStream" uid="uid://4xl4qb84kg03" path="res://assets/sounds/beep.ogg" id="5_js0h5"]
-[ext_resource type="AudioStream" uid="uid://do73yag836rfr" path="res://assets/sounds/explosion.ogg" id="7_gagvr"]
+[ext_resource type="Texture2D" uid="uid://d4lpi8klbu1b4" path="res://assets/trap/Mine.png" id="2_a2opu"]
+[ext_resource type="Texture2D" uid="uid://b4afav6cqekb5" path="res://assets/trap/Explosion.png" id="4_g5usw"]
+[ext_resource type="AudioStream" uid="uid://1e0xoa2ugpsq" path="res://assets/sounds/beep.ogg" id="5_js0h5"]
+[ext_resource type="AudioStream" uid="uid://rndl7k8gkg7j" path="res://assets/sounds/explosion.ogg" id="7_gagvr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5fnj"]
 size = Vector2(9, 4)

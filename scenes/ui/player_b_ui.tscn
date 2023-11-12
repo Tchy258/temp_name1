@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://cxaqx4j3qo536"]
 
-[ext_resource type="Texture2D" uid="uid://df2j0qejdsb1j" path="res://assets/trap/ceiling_trap_1.png" id="1_l38im"]
+[ext_resource type="Texture2D" uid="uid://dnpaqqv00xirt" path="res://assets/trap/ceiling_trap_1.png" id="1_l38im"]
 [ext_resource type="Script" path="res://scenes/ui/player2_canvas.gd" id="2_aocac"]
 [ext_resource type="Script" path="res://scripts/trap_button.gd" id="2_xsp0f"]
 [ext_resource type="Script" path="res://scripts/player_2_camera.gd" id="4_hsj0s"]
-[ext_resource type="Texture2D" uid="uid://6dr5vtoojhmr" path="res://assets/trap/spear_1.png" id="5_yra6b"]
-[ext_resource type="Texture2D" uid="uid://bc8ha41xci36e" path="res://assets/trap/mine1.png" id="6_71l80"]
-[ext_resource type="Texture2D" uid="uid://bghobi7jxbtom" path="res://assets/trap/fire_icon.png" id="6_byab6"]
-[ext_resource type="Texture2D" uid="uid://cmvr7dpac73rv" path="res://assets/trap/Fan_icon.png" id="8_a7qpf"]
+[ext_resource type="Texture2D" uid="uid://qrdetv14jtqj" path="res://assets/trap/spear_1.png" id="5_yra6b"]
+[ext_resource type="Texture2D" uid="uid://doadycrhpqhib" path="res://assets/trap/mine1.png" id="6_71l80"]
+[ext_resource type="Texture2D" uid="uid://c24uli8opc2de" path="res://assets/trap/fire_icon.png" id="6_byab6"]
+[ext_resource type="Texture2D" uid="uid://cerl7uubc0fvq" path="res://assets/trap/Fan_icon.png" id="8_a7qpf"]
 
 [node name="Camera2D" type="Camera2D"]
 scale = Vector2(2, 2)
