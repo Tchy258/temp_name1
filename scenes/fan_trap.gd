@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var wind_area = $WindBox/CollisionShape2D
 @onready var animation= $AnimationTree.get("parameters/playback")
 
+
 var is_selected = false
 
 var speed = 0
@@ -65,3 +66,4 @@ func init(id:int, global_pos: Vector2):
 	set_multiplayer_authority(id,true)
 	player_id = id
 	global_position = global_pos
+

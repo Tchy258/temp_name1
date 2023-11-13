@@ -100,6 +100,7 @@ func _ready():
 func _process(_delta: float) -> void:
 	if !start_timer.is_stopped():
 		time.text = str(ceil(start_timer.time_left))
+		stage_select_button.disabled = true
 
 
 func _on_upnp_completed(_status) -> void:
@@ -319,6 +320,7 @@ func _back_to_first_menu() -> void:
 		first.show()
 	if Game.is_online():
 		_disconnect()
+	stage_select_button.disabled = false
 
 func _on_change_port_pressed() -> void:
 	Configs.config_file.set_value("Network","port",port.value)
@@ -342,5 +344,3 @@ func _on_stage_select_button_item_selected(index):
 func _set_stage(index):
 	stage_select_button.select(index)
 	selected_level = Game.stages.values()[index]
-	if !multiplayer.is_server():
-		stage_select_button.disabled = true 

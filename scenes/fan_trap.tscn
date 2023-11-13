@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://un864jiseg3r"]
+[gd_scene load_steps=24 format=3 uid="uid://un864jiseg3r"]
 
 [ext_resource type="Texture2D" uid="uid://dsqrd0p8hduyt" path="res://assets/trap/Fan.png" id="1_oljpr"]
 [ext_resource type="Script" path="res://scenes/fan_trap.gd" id="1_qku4h"]
@@ -34,6 +34,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WindParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_urdjx"]
 resource_name = "Off"
@@ -62,6 +74,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WindParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_60guj"]
@@ -144,6 +168,31 @@ size = Vector2(28, 80)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5co6w"]
 size = Vector2(32, 20)
 
+[sub_resource type="Curve" id="Curve_tsg4p"]
+max_value = 100.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.58, 1), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_a70a8"]
+curve = SubResource("Curve_tsg4p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_75ir0"]
+emission_shape = 3
+emission_box_extents = Vector3(11, 2, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 5.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 100.0
+damping_max = 100.0
+damping_curve = SubResource("CurveTexture_a70a8")
+angle_max = 193.0
+color = Color(1, 1, 1, 0.627451)
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jlo4x"]
 properties/0/path = NodePath("AnimationPlayer:current_animation")
 properties/0/spawn = true
@@ -196,6 +245,16 @@ disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickableArea"]
 shape = SubResource("RectangleShape2D_5co6w")
+
+[node name="WindParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, -4)
+emitting = false
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_75ir0")
+trail_enabled = true
+trail_lifetime = 0.09
+trail_sections = 2
+trail_section_subdivisions = 1
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_jlo4x")
