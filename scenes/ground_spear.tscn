@@ -1,105 +1,13 @@
-[gd_scene load_steps=24 format=3 uid="uid://djv1rc6fw3m4o"]
+[gd_scene load_steps=11 format=3 uid="uid://djv1rc6fw3m4o"]
 
 [ext_resource type="Script" path="res://scenes/ground_spear.gd" id="1_fqnap"]
-[ext_resource type="Texture2D" uid="uid://d2sqlw1c1xm37" path="res://assets/trap/Spear.png" id="2_oe848"]
+[ext_resource type="Texture2D" uid="uid://d0hjbgfuv386j" path="res://assets/trap/Spear.png" id="2_uso8r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhjhk"]
 size = Vector2(6, 42)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_duhvo"]
 size = Vector2(6, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e03y4"]
-atlas = ExtResource("2_oe848")
-region = Rect2(0, 0, 16, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_teovc"]
-atlas = ExtResource("2_oe848")
-region = Rect2(16, 0, 16, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xi6kp"]
-atlas = ExtResource("2_oe848")
-region = Rect2(32, 0, 16, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hhrhn"]
-atlas = ExtResource("2_oe848")
-region = Rect2(48, 0, 16, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yry72"]
-atlas = ExtResource("2_oe848")
-region = Rect2(64, 0, 16, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xxmvt"]
-atlas = ExtResource("2_oe848")
-region = Rect2(80, 0, 16, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_esfi4"]
-atlas = ExtResource("2_oe848")
-region = Rect2(96, 0, 16, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k1ug1"]
-atlas = ExtResource("2_oe848")
-region = Rect2(112, 0, 16, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6psvg"]
-atlas = ExtResource("2_oe848")
-region = Rect2(128, 0, 16, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c1l0w"]
-atlas = ExtResource("2_oe848")
-region = Rect2(144, 0, 16, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ttlps"]
-atlas = ExtResource("2_oe848")
-region = Rect2(160, 0, 16, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hy4vp"]
-atlas = ExtResource("2_oe848")
-region = Rect2(176, 0, 16, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_guhre"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e03y4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_teovc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xi6kp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hhrhn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yry72")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xxmvt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_esfi4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k1ug1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6psvg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c1l0w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ttlps")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hy4vp")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pjqm4"]
 radius = 4.0
@@ -225,8 +133,9 @@ position = Vector2(-0.5, -25)
 collision_layer = 64
 collision_mask = 129
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Pivot/CollisionDetector"]
-sprite_frames = SubResource("SpriteFrames_guhre")
+[node name="Sprite2D" type="Sprite2D" parent="Pivot/CollisionDetector"]
+texture = ExtResource("2_uso8r")
+hframes = 12
 
 [node name="SpearCollision" type="CollisionShape2D" parent="Pivot/CollisionDetector"]
 position = Vector2(0.5, 23)

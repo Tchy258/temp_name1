@@ -34,6 +34,7 @@ func _ready():
 
 func _on_button_pressed(button: Button):
 	if is_multiplayer_authority():
+		_on_trap_canceled()
 		if current_state == State.MAP_WATCH:
 			current_state = State.TRAP_CLICK
 			current_trap = button.trap
@@ -62,6 +63,7 @@ func trap_click():
 	
 
 func _reset_placer():
+	if !current_button: return
 	current_button.disabled = false
 	current_state = State.MAP_WATCH
 	trap_placer.sprite.rotation = 0

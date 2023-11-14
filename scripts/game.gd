@@ -25,7 +25,7 @@ signal upnp_completed(error)
 # Replace this with your own server port number between 1024 and 65535.
 var server_port = Configs.port if Configs.port != 0 else 5409
 var thread = null
-
+var background
 
 func add_player(player: PlayerData) -> void:
 	players.append(player)

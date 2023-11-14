@@ -9,12 +9,15 @@ signal placed
 signal canceled
 
 func _ready():
+	if !is_multiplayer_authority(): set_process(false)
 	visible = false
+	position = get_global_mouse_position()
+
+func _process(_delta):
+	position = get_global_mouse_position()
 
 func _unhandled_input(event):
 	if enabled and is_multiplayer_authority():
-		if lifted and event is InputEventMouseMotion:
-			position = get_global_mouse_position()
 		if event is InputEventMouseButton and event.is_action("l_click"):
 			_deactivate_placer(placed,global_position)
 		elif event is InputEventMouseButton and event.is_action("r_click"):

@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6v21eln1hux6"]
+[gd_scene load_steps=6 format=3 uid="uid://c6v21eln1hux6"]
 
 [ext_resource type="Script" path="res://scenes/arrow_body.gd" id="1_oef5f"]
-[ext_resource type="Texture2D" uid="uid://ds861vq01sh3g" path="res://assets/trap/Shooter_Arrow_Trap.png" id="1_psujw"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6ew52"]
 emission_shape = 3
@@ -55,7 +54,6 @@ scale = Vector2(2, 2)
 
 [node name="ArrowSprite" type="Sprite2D" parent="Container"]
 position = Vector2(0, 3)
-texture = ExtResource("1_psujw")
 region_enabled = true
 region_rect = Rect2(53, 7, 6, 8)
 

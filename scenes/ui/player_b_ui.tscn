@@ -1,17 +1,17 @@
 [gd_scene load_steps=9 format=3 uid="uid://cxaqx4j3qo536"]
 
-[ext_resource type="Texture2D" uid="uid://dnpaqqv00xirt" path="res://assets/trap/ceiling_trap_1.png" id="1_l38im"]
+[ext_resource type="Texture2D" uid="uid://bnbymxnrwpuo7" path="res://assets/trap/ceiling_trap_1.png" id="1_l38im"]
 [ext_resource type="Script" path="res://scenes/ui/player2_canvas.gd" id="2_aocac"]
 [ext_resource type="Script" path="res://scripts/trap_button.gd" id="2_xsp0f"]
 [ext_resource type="Script" path="res://scripts/player_2_camera.gd" id="4_hsj0s"]
-[ext_resource type="Texture2D" uid="uid://qrdetv14jtqj" path="res://assets/trap/spear_1.png" id="5_yra6b"]
-[ext_resource type="Texture2D" uid="uid://doadycrhpqhib" path="res://assets/trap/mine1.png" id="6_71l80"]
-[ext_resource type="Texture2D" uid="uid://c24uli8opc2de" path="res://assets/trap/fire_icon.png" id="6_byab6"]
-[ext_resource type="Texture2D" uid="uid://dvb5y5hm5vwum" path="res://assets/trap/Fan_1.png" id="8_7rcmn"]
+[ext_resource type="Texture2D" uid="uid://bil1sk0juscc0" path="res://assets/trap/spear_1.png" id="5_yra6b"]
+[ext_resource type="Texture2D" uid="uid://doe0sivu46pur" path="res://assets/trap/mine1.png" id="6_71l80"]
+[ext_resource type="Texture2D" uid="uid://ceyhpwgmwtqaf" path="res://assets/trap/fire_icon.png" id="6_byab6"]
+[ext_resource type="Texture2D" uid="uid://dckscj5tpj1ok" path="res://assets/trap/Fan_1.png" id="8_7rcmn"]
 
 [node name="Camera2D" type="Camera2D"]
 scale = Vector2(2, 2)
-offset = Vector2(128, 72)
+anchor_mode = 0
 enabled = false
 editor_draw_limits = true
 editor_draw_drag_margin = true
@@ -51,6 +51,7 @@ trap_props = {
 "can_be_rotated": true,
 "scale": Vector2(2, 2)
 }
+action_name = "arrow_shortcut"
 
 [node name="GroundSpear" type="Button" parent="CanvasLayer/Ui/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(48, 48)
@@ -61,6 +62,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("2_xsp0f")
 trap = 1
+action_name = "spear_shortcut"
 
 [node name="Mine" type="Button" parent="CanvasLayer/Ui/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(48, 48)
@@ -71,6 +73,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("2_xsp0f")
 trap = 2
+action_name = "mine_shortcut"
 
 [node name="FireTrap" type="Button" parent="CanvasLayer/Ui/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(48, 48)
@@ -84,6 +87,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("2_xsp0f")
 trap = 3
+action_name = "fire_shortcut"
 
 [node name="FanTrap" type="Button" parent="CanvasLayer/Ui/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 48)
@@ -98,3 +102,4 @@ trap_props = {
 "can_be_rotated": true,
 "scale": Vector2(1, 1)
 }
+action_name = "fan_shortcut"
