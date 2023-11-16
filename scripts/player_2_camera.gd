@@ -55,11 +55,12 @@ func _unhandled_input(event: InputEvent) -> void:
 func zoom_in() -> void:
 	_target_zoom = min(_target_zoom + ZOOM_INCREMENT, MAX_ZOOM)
 	Game.background.scale = _target_zoom * Vector2.ONE * 1.25 * 3
+	Game.background.scroll_base_scale=_target_zoom*Vector2.ONE 
 	set_physics_process(true)
 
 
 func zoom_out() -> void:
 	_target_zoom = max(_target_zoom - ZOOM_INCREMENT, MIN_ZOOM)
 	Game.background.scale = _target_zoom * Vector2.ONE * 1.25 * 3
-	#Game.background.scale = max(Game.background.scale.x - ZOOM_INCREMENT , 1.25) * Vector2.ONE
+	Game.background.scroll_base_scale=_target_zoom*Vector2.ONE
 	set_physics_process(true)
