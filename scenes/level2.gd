@@ -4,7 +4,13 @@ extends Node2D
 @export var player_b_scene: PackedScene
 @onready var players: Node2D = $Players
 @onready var spawn: Node2D = $Spawn
-@onready var waiting_room = $WaitingRoom
+@onready var waiting_room: Node2D = $WaitingRoom
+@onready var cam_limits: Node2D = $CamLimits
+@onready var upper_x = $CamLimits/UpperX
+@onready var lower_x = $CamLimits/LowerX
+@onready var upper_y = $CamLimits/UpperY
+@onready var lower_y = $CamLimits/LowerY
+
 
 
 @rpc("any_peer","reliable","call_local")

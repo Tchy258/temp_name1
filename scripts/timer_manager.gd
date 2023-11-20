@@ -54,10 +54,11 @@ func on_stage_timer_timeout():
 @rpc("any_peer","call_local","reliable")
 func on_goal_reached():
 	stage_timer.stop()
-	timer_label.text = "Player A wins!"
-	await get_tree().create_timer(5).timeout
-	timer_display.visible = false
-	Game.players.clear()
-	Game.roles.clear()
-	multiplayer.multiplayer_peer = null
-	get_tree().change_scene_to_file("res://scenes/lobby.tscn")
+	if timer_label.text != "Player B wins!":
+		timer_label.text = "Player A wins!"
+		await get_tree().create_timer(5).timeout
+		timer_display.visible = false
+		Game.players.clear()
+		Game.roles.clear()
+		multiplayer.multiplayer_peer = null
+		get_tree().change_scene_to_file("res://scenes/lobby.tscn")

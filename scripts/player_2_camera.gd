@@ -11,6 +11,7 @@ var is_cursor_inside: bool = true
 
 var _target_zoom: float = 1.0
 
+
 func _notification(what):
 	match what:
 		NOTIFICATION_WM_MOUSE_EXIT:
@@ -34,13 +35,13 @@ func _physics_process(delta: float) -> void:
 		var displacement = PAN_SPEED * delta + 1/max(_target_zoom,0.000000001) * 2
 		if Input.is_action_pressed("quick_pan"): displacement*=2
 		if Input.is_action_pressed("move_left"):
-				position.x -= displacement
+			position.x -= displacement
 		if Input.is_action_pressed("move_right"):
-				position.x += displacement
+			position.x += displacement
 		if Input.is_action_pressed("move_up"):
-				position.y -= displacement
+			position.y -= displacement
 		if Input.is_action_pressed("move_down"):
-				position.y += displacement
+			position.y += displacement
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -54,13 +55,12 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func zoom_in() -> void:
 	_target_zoom = min(_target_zoom + ZOOM_INCREMENT, MAX_ZOOM)
-	Game.background.scale = _target_zoom * Vector2.ONE * 1.25 * 3
 	Game.background.scroll_base_scale=_target_zoom*Vector2.ONE 
 	set_physics_process(true)
 
 
 func zoom_out() -> void:
 	_target_zoom = max(_target_zoom - ZOOM_INCREMENT, MIN_ZOOM)
-	Game.background.scale = _target_zoom * Vector2.ONE * 1.25 * 3
 	Game.background.scroll_base_scale=_target_zoom*Vector2.ONE
 	set_physics_process(true)
+	
