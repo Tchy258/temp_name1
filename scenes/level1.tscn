@@ -621,3 +621,11 @@ position = Vector2(500, 49.5)
 shape = SubResource("RectangleShape2D_vnwaq")
 
 [node name="ParallaxCave" parent="." instance=ExtResource("7_gv5ve")]
+
+[node name="CamLimits" type="Node2D" parent="."]
+
+[node name="Lower" type="Marker2D" parent="CamLimits"]
+position = Vector2(-184, 263)
+
+[node name="Upper" type="Marker2D" parent="CamLimits"]
+position = Vector2(4567, -1291)

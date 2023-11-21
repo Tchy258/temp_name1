@@ -26,11 +26,11 @@ func _ready():
 		var ui = canvas_layer.get_children(true)[0]
 		var margin_container = ui.get_children(true)[0]
 		var vbox_container = margin_container.get_children(true)[0]
+		
 		for child in vbox_container.get_children(true):
 			child.connect("pressed",child._on_button_pressed)
 			child.connect("emit_self",_on_button_pressed)
 		
-
 
 func _on_button_pressed(button: Button):
 	if is_multiplayer_authority():
@@ -87,6 +87,4 @@ func setup(player_data: Game.PlayerData):
 	name = str(player_data.id)
 	Debug.dprint(player_data.name, 30)
 	Debug.dprint(player_data.role, 30)
-	
-
 	

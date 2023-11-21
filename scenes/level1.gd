@@ -5,6 +5,10 @@ extends Node2D
 @onready var players: Node2D = $Players
 @onready var spawn: Node2D = $Spawn
 @onready var waiting_room = $WaitingRoom
+@onready var cam_limits: Node2D = $CamLimits
+
+@onready var lower = $CamLimits/Lower
+@onready var upper = $CamLimits/Upper
 
 
 @rpc("any_peer","reliable","call_local")
@@ -26,6 +30,14 @@ func _ready() -> void:
 		else:
 			player = player_b_scene.instantiate()
 			player.global_position = Vector2(0,0)
+			
+			# Setting cam's limits
+			var cam: Camera2D = player.get_node("Camera")
+			if cam: 
+				cam.limit_left = lower.position.x
+				cam.limit_right = upper.position.x
+				cam.limit_bottom = lower.position.y
+				cam.limit_top = upper.position.y
 		player.setup(player_data)
 		players.call_deferred("add_child",player)
 	if multiplayer.is_server():

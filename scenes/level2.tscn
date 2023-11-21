@@ -741,14 +741,8 @@ shape = SubResource("RectangleShape2D_vnwaq")
 
 [node name="CamLimits" type="Node2D" parent="."]
 
-[node name="UpperX" type="Marker2D" parent="CamLimits"]
-position = Vector2(1538, 3)
+[node name="Lower" type="Marker2D" parent="CamLimits"]
+position = Vector2(-252, 231)
 
-[node name="LowerX" type="Marker2D" parent="CamLimits"]
-position = Vector2(-679, -11)
-
-[node name="UpperY" type="Marker2D" parent="CamLimits"]
-position = Vector2(418, -2393)
-
-[node name="LowerY" type="Marker2D" parent="CamLimits"]
-position = Vector2(413, 333)
+[node name="Upper" type="Marker2D" parent="CamLimits"]
+position = Vector2(1088, -2262)

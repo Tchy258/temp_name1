@@ -5,12 +5,11 @@ const MIN_ZOOM: float = 0.4
 const MAX_ZOOM: float = 1.0
 const ZOOM_RATE: float = 8.0
 const ZOOM_INCREMENT: float = 0.1
-const PAN_SPEED: float = 180
+const PAN_SPEED: float = 200
 
 var is_cursor_inside: bool = true
 
 var _target_zoom: float = 1.0
-
 
 func _notification(what):
 	match what:
@@ -32,7 +31,7 @@ func _physics_process(delta: float) -> void:
 		var viewport_rect = get_viewport_rect()
 		var _viewport_start = viewport_rect.position
 		var _viewport_end = viewport_rect.position + viewport_rect.size/2
-		var displacement = PAN_SPEED * delta + 1/max(_target_zoom,0.000000001) * 2
+		var displacement = 1.1*PAN_SPEED * delta + 1/max(_target_zoom,0.000000001) * 2
 		if Input.is_action_pressed("quick_pan"): displacement*=2
 		if Input.is_action_pressed("move_left"):
 			position.x -= displacement
@@ -63,4 +62,5 @@ func zoom_out() -> void:
 	_target_zoom = max(_target_zoom - ZOOM_INCREMENT, MIN_ZOOM)
 	Game.background.scroll_base_scale=_target_zoom*Vector2.ONE
 	set_physics_process(true)
+	
 	
