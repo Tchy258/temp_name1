@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scenes/level2.gd" id="1_k4jhe"]
 [ext_resource type="PackedScene" uid="uid://b3mhsy021dqog" path="res://scenes/player_a.tscn" id="2_lmdtb"]
 [ext_resource type="PackedScene" uid="uid://dh1egp5aes3yp" path="res://scenes/player_b.tscn" id="3_hayd4"]
-[ext_resource type="Texture2D" uid="uid://cnq3bn7dk6dc5" path="res://assets/tilesets/crystal_tileset.png" id="4_xeuqe"]
+[ext_resource type="Texture2D" uid="uid://c35atjakkdsil" path="res://assets/tilesets/crystal_tileset.png" id="4_xeuqe"]
 [ext_resource type="PackedScene" uid="uid://bwgou5o3u0e6k" path="res://scenes/goal.tscn" id="5_r3sk6"]
 [ext_resource type="Script" path="res://scripts/color_pick_rect.gd" id="6_ro826"]
-[ext_resource type="PackedScene" uid="uid://bvfcvdh844bbe" path="res://scenes/parallax_stage2.tscn" id="7_mybe8"]
+[ext_resource type="PackedScene" path="res://scenes/parallax_stage2.tscn" id="7_mybe8"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7x2bw"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -209,7 +209,7 @@ separation = Vector2i(0, 8)
 5:1/0/terrain = 1
 5:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:1/0/physics_layer_0/angular_velocity = 0.0
-5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(6, -0.75, 8, 2.375, 8, 8, -8, 8, -8, 1.23744, -8, -8, 8, -8, 8, -5.25)
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 0, 8, 2.375, 8, 8, -8, 8, -8, 1.23744, -8, -8, 8, -8, 8, -4)
 5:1/0/terrains_peering_bit/bottom_side = 1
 5:1/0/terrains_peering_bit/bottom_left_corner = 1
 5:1/0/terrains_peering_bit/left_side = 1
@@ -229,7 +229,7 @@ separation = Vector2i(0, 8)
 1:1/0/terrain = 1
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_0/angular_velocity = 0.0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -0.883884, 8, 8, -8, 8, -8, 1.23744, -5, -0.875, -8, -3.625, -8, -8, 8, -8)
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
 1:1/0/terrains_peering_bit/right_side = 1
 1:1/0/terrains_peering_bit/bottom_right_corner = 1
 1:1/0/terrains_peering_bit/bottom_side = 1
@@ -531,6 +531,7 @@ separation = Vector2i(0, 8)
 1:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:7/0/physics_layer_0/angular_velocity = 0.0
 1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:7/0/physics_layer_0/polygon_0/one_way = true
 1:7/0/terrains_peering_bit/right_side = 4
 1:7/0/terrains_peering_bit/bottom_right_corner = 4
 1:7/0/terrains_peering_bit/bottom_side = 4
@@ -542,6 +543,7 @@ separation = Vector2i(0, 8)
 3:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:7/0/physics_layer_0/angular_velocity = 0.0
 3:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:7/0/physics_layer_0/polygon_0/one_way = true
 3:7/0/terrains_peering_bit/right_side = 4
 3:7/0/terrains_peering_bit/bottom_right_corner = 4
 3:7/0/terrains_peering_bit/bottom_side = 4
@@ -556,6 +558,7 @@ separation = Vector2i(0, 8)
 5:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:7/0/physics_layer_0/angular_velocity = 0.0
 5:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:7/0/physics_layer_0/polygon_0/one_way = true
 5:7/0/terrains_peering_bit/bottom_side = 4
 5:7/0/terrains_peering_bit/bottom_left_corner = 4
 5:7/0/terrains_peering_bit/left_side = 4
