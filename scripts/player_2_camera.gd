@@ -1,11 +1,11 @@
 extends Camera2D
 class_name PanningCamera2D
 
-const MIN_ZOOM: float = 0.4
+const MIN_ZOOM: float = 0.2
 const MAX_ZOOM: float = 1.0
 const ZOOM_RATE: float = 8.0
 const ZOOM_INCREMENT: float = 0.1
-const PAN_SPEED: float = 200
+const PAN_SPEED: float = 250
 
 var is_cursor_inside: bool = true
 
@@ -34,13 +34,14 @@ func _physics_process(delta: float) -> void:
 		var displacement = 1.1*PAN_SPEED * delta + 1/max(_target_zoom,0.000000001) * 2
 		if Input.is_action_pressed("quick_pan"): displacement*=2
 		if Input.is_action_pressed("move_left"):
-			position.x -= displacement
+			position.x = max(position.x - displacement, limit_left)
 		if Input.is_action_pressed("move_right"):
-			position.x += displacement
+			position.x = min(position.x + displacement, limit_right)
 		if Input.is_action_pressed("move_up"):
-			position.y -= displacement
+			position.y = max(position.y - displacement, limit_top)
 		if Input.is_action_pressed("move_down"):
-			position.y += displacement
+			position.y = min(position.y + displacement, limit_bottom)
+
 
 
 func _unhandled_input(event: InputEvent) -> void:
