@@ -348,3 +348,7 @@ func _set_stage(option):
 				var player = child as UILobbyPlayer
 				if player.player_id == multiplayer.get_unique_id() and player.ready_texture.visible:
 					player_ready.rpc_id(1, multiplayer.get_unique_id())
+
+
+func _on_return_to_title_pressed():
+	get_tree().change_scene_to_file("res://scenes/ui/title_screen.tscn")

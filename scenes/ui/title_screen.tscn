@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcpihq3vnu6j0"]
+
+[ext_resource type="Theme" uid="uid://c3haqmqt2v004" path="res://themes/lobby_theme.tres" id="1_7c68r"]
+[ext_resource type="Script" path="res://scenes/ui/title_screen.gd" id="1_re328"]
+[ext_resource type="Texture2D" uid="uid://dm8xtgxnw7tgg" path="res://assets/logo/logo.png" id="2_vmjxl"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_re328")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(173, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.5
+offset_top = 77.0
+offset_right = 86.5
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7c68r")
+alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer"]
+position = Vector2(85, 0)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_vmjxl")
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="HowToPlay" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "HowToPlay"
+
+[node name="Credits" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Credits"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

@@ -6,4 +6,5 @@
 offset_right = 8.0
 offset_bottom = 16.0
 size_flags_vertical = 8
+text = "Choose a stage"
 script = ExtResource("1_xnrx2")
