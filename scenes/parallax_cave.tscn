@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://d0apr3wsquoe2"]
 
-[ext_resource type="Texture2D" uid="uid://qjmr0svp5ngk" path="res://assets/backgrounds/ParallaxCave/1.png" id="1_4x0cp"]
-[ext_resource type="Texture2D" uid="uid://dnsi6jin4y0by" path="res://assets/backgrounds/ParallaxCave/7.png" id="1_c3ajl"]
+[ext_resource type="Texture2D" uid="uid://dwccmtpdiwqyy" path="res://assets/backgrounds/ParallaxCave/1.png" id="1_4x0cp"]
+[ext_resource type="Texture2D" uid="uid://douad1bksibqr" path="res://assets/backgrounds/ParallaxCave/7.png" id="1_c3ajl"]
 [ext_resource type="Script" path="res://scripts/parallax_cave.gd" id="1_d1c2p"]
-[ext_resource type="Texture2D" uid="uid://dvmopwrf478cx" path="res://assets/backgrounds/ParallaxCave/6.png" id="2_73c55"]
-[ext_resource type="Texture2D" uid="uid://cxxeql0aftj8f" path="res://assets/backgrounds/ParallaxCave/2.png" id="2_vgyyl"]
-[ext_resource type="Texture2D" uid="uid://yyfoxghyedam" path="res://assets/backgrounds/ParallaxCave/5.png" id="3_g45vx"]
-[ext_resource type="Texture2D" uid="uid://bl5gxxt3niq6l" path="res://assets/backgrounds/ParallaxCave/4.png" id="4_oexpb"]
-[ext_resource type="Texture2D" uid="uid://jjx6o3xvbbnh" path="res://assets/backgrounds/ParallaxCave/3.png" id="5_f6ll0"]
+[ext_resource type="Texture2D" uid="uid://cil65hx02ge5" path="res://assets/backgrounds/ParallaxCave/6.png" id="2_73c55"]
+[ext_resource type="Texture2D" uid="uid://6o5d4twmsc7b" path="res://assets/backgrounds/ParallaxCave/2.png" id="2_vgyyl"]
+[ext_resource type="Texture2D" uid="uid://bklk85fm2j5n7" path="res://assets/backgrounds/ParallaxCave/5.png" id="3_g45vx"]
+[ext_resource type="Texture2D" uid="uid://c3dxlnpoduota" path="res://assets/backgrounds/ParallaxCave/4.png" id="4_oexpb"]
+[ext_resource type="Texture2D" uid="uid://ceca03wjglh3h" path="res://assets/backgrounds/ParallaxCave/3.png" id="5_f6ll0"]
 
 [node name="ParallaxCave" type="ParallaxBackground"]
 offset = Vector2(240, 135)

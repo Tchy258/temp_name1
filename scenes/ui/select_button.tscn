@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmrkwdv74myvg"]
+
+[ext_resource type="Script" path="res://scripts/select_button.gd" id="1_xnrx2"]
+
+[node name="SelectButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 16.0
+size_flags_vertical = 8
+text = "Choose a stage"
+script = ExtResource("1_xnrx2")

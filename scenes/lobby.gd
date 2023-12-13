@@ -92,8 +92,8 @@ func _ready():
 	port.value = port_number
 	last_ip = Configs.last_ip if Configs.last_ip != "" else "127.0.0.1"
 	ip.text = str(last_ip)
-	for i in range(Game.stages.size()):
-		stage_select_button.add_item(Game.stages.keys()[i],i)
+	#for i in range(Game.stages.size()):
+	#	stage_select_button.add_item(Game.stages.keys()[i],i)
 	Game.upnp_completed.connect(_on_upnp_completed)
 
 
@@ -117,7 +117,6 @@ func _on_host_pressed() -> void:
 	var peer = ENetMultiplayerPeer.new()
 	stage_select_button.set_multiplayer_authority(multiplayer.get_unique_id())
 	stage_select_button.disabled = false
-	_set_stage(0)
 	var err = peer.create_server(port_number, MAX_PLAYERS)
 	if err:
 		Debug.dprint("Host Error: %d" %err)
@@ -142,7 +141,6 @@ func _on_confirm_join_pressed() -> void:
 	Configs.config_file.save("user://network_settings.cfg")
 	var peer = ENetMultiplayerPeer.new()
 	var err = peer.create_client(ip.text, port_number)
-	_set_stage(0)
 	stage_select_button.disabled = true
 	if err:
 		Debug.dprint("Host Error: %d" %err)
@@ -173,7 +171,7 @@ func _on_peer_connected(id: int) -> void:
 		for player_id in status:
 			set_player_ready.rpc_id(id, player_id, status[player_id])
 		status[id] = false
-		_set_stage.rpc(stage_select_button.selected)
+		_set_stage.rpc(stage_select_button.text)
 
 
 func _on_peer_disconnected(id: int) -> void:
@@ -233,7 +231,7 @@ func player_ready(id: int):
 		var all_ok = true
 		for ok in status.values():
 			all_ok = all_ok and ok
-		if all_ok and stage_select_button.selected != -1:
+		if all_ok and stage_select_button.text != "Choose a stage":
 			starting_game.rpc(true)
 		else:
 			starting_game.rpc(false)
@@ -335,12 +333,22 @@ func _on_change_port_pressed() -> void:
 	Debug.dprint("Port changed to " + str(port.value) + "!",5)
 
 
-func _on_stage_select_button_item_selected(index):
+func _on_stage_select_button_item_selected(option):
 	if multiplayer.is_server():
-		_set_stage.rpc(index)
+		_set_stage.rpc(option)
 		
 		
 @rpc("call_local","any_peer")
-func _set_stage(index):
-	stage_select_button.select(index)
-	selected_level = Game.stages.values()[index]
+func _set_stage(option):
+	stage_select_button.text = option
+	if option != "Choose a stage":
+		selected_level = Game.stages[option]
+		if multiplayer.is_server():
+			for child in players.get_children():
+				var player = child as UILobbyPlayer
+				if player.player_id == multiplayer.get_unique_id() and player.ready_texture.visible:
+					player_ready.rpc_id(1, multiplayer.get_unique_id())
+
+
+func _on_return_to_title_pressed():
+	get_tree().change_scene_to_file("res://scenes/ui/title_screen.tscn")

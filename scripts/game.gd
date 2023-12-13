@@ -17,6 +17,7 @@ var roles := {}
 const stages: Dictionary = {
 	"Stage1": "level1.tscn",
 	"Stage2": "level2.tscn",
+	"Stage3": "level3.tscn",
 }
 
 # Emitted when UPnP port mapping setup is completed (regardless of success or failure).
