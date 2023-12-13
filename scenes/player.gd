@@ -1,10 +1,13 @@
 class_name PlayerA
 extends CharacterBody2D
 
+const NORMAL_GRAVITY = 1100
+const WIND_GRAVITY = 500
+
 var max_speed = 180
 var jump_speed = 400
 var acceleration = 3300
-var gravity = 1100
+var gravity = NORMAL_GRAVITY
 var damage: bool = false
 var in_wind:bool=false
 var wind_velocity:Vector2 = Vector2.ZERO
@@ -52,7 +55,10 @@ func _physics_process(delta: float) -> void:
 			else:
 				jump_buffer = 8
 	if in_wind:
+		gravity = WIND_GRAVITY
 		velocity.y += wind_velocity.y*delta
+	else:
+		gravity = NORMAL_GRAVITY
 	if is_multiplayer_authority():
 		if !damage:
 			var move_input = Input.get_axis("move_left", "move_right")
@@ -85,7 +91,7 @@ func _physics_process(delta: float) -> void:
 				jump_buffer = 0
 				jumping = true
 #				jump()
-			
+			wind_velocity.x = wind_velocity.x * 0.9 if is_on_floor() and in_wind else wind_velocity.x
 			velocity.x = move_toward(velocity.x, (max_speed * move_dir) + wind_velocity.x, acceleration * delta)
 		else:
 			if is_on_floor():

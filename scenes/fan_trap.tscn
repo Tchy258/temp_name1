@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://un864jiseg3r"]
 
-[ext_resource type="Texture2D" uid="uid://dsqrd0p8hduyt" path="res://assets/trap/Fan.png" id="1_oljpr"]
+[ext_resource type="Texture2D" uid="uid://2hplbpekfpc2" path="res://assets/trap/Fan.png" id="1_oljpr"]
 [ext_resource type="Script" path="res://scenes/fan_trap.gd" id="1_qku4h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_auivp"]
