@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bslhrv3eo36wd"]
+[gd_scene load_steps=5 format=3 uid="uid://bslhrv3eo36wd"]
 
 [ext_resource type="Script" path="res://scenes/lobby.gd" id="1_g2fmt"]
 [ext_resource type="Theme" uid="uid://c3haqmqt2v004" path="res://themes/lobby_theme.tres" id="1_wywfx"]
 [ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://scenes/ui/lobby_player.tscn" id="2_060bj"]
+[ext_resource type="PackedScene" uid="uid://bmrkwdv74myvg" path="res://scenes/ui/select_button.tscn" id="4_u0mpg"]
 
 [node name="Lobby" type="MarginContainer"]
 anchors_preset = 15
@@ -140,14 +141,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Role B"
 
-[node name="StageSelectLabel" type="Label" parent="PanelContainer/Menus/ReadyMenu"]
-layout_mode = 2
-text = "Stage Select"
-
-[node name="StageSelectButton" type="OptionButton" parent="PanelContainer/Menus/ReadyMenu"]
-unique_name_in_owner = true
-layout_mode = 2
-
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/Menus/ReadyMenu"]
 layout_mode = 2
 
@@ -163,6 +156,16 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Ready"
+
+[node name="StageSelectLabel" type="Label" parent="PanelContainer/Menus/ReadyMenu"]
+layout_mode = 2
+text = "Stage Select"
+
+[node name="StageSelectButton" parent="PanelContainer/Menus/ReadyMenu" instance=ExtResource("4_u0mpg")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Choose a stage"
+items = Array[String](["Stage1", "Stage2", "Stage3"])
 
 [node name="TimeContainer" type="HBoxContainer" parent="PanelContainer/Menus/ReadyMenu"]
 unique_name_in_owner = true
@@ -181,4 +184,4 @@ text = "5"
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 3.0
 
-[connection signal="item_selected" from="PanelContainer/Menus/ReadyMenu/StageSelectButton" to="." method="_on_stage_select_button_item_selected"]
+[connection signal="option_selected" from="PanelContainer/Menus/ReadyMenu/StageSelectButton" to="." method="_on_stage_select_button_item_selected"]
