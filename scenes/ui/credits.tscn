@@ -28,6 +28,7 @@ size_flags_vertical = 3
 [node name="Credits" type="Label" parent="ScrollContainer/CreditsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
 text = "Credits"
 horizontal_alignment = 1
 
@@ -36,12 +37,11 @@ layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="ScrollContainer/CreditsContainer/Assets"]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
 
 [node name="Assets" type="Label" parent="ScrollContainer/CreditsContainer/Assets"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
 text = "Assets"
 horizontal_alignment = 1
 
@@ -53,6 +53,7 @@ layout_mode = 2
 
 [node name="Staff" type="Label" parent="ScrollContainer/CreditsContainer/Staff"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Staff"
 horizontal_alignment = 1
 
@@ -64,6 +65,7 @@ layout_mode = 2
 
 [node name="SpecialThanks" type="Label" parent="ScrollContainer/CreditsContainer/SpecialThanks"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Special Thanks"
 horizontal_alignment = 1
 
@@ -72,5 +74,6 @@ layout_mode = 2
 
 [node name="KirbyPotoStudios" type="Label" parent="ScrollContainer/CreditsContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "©KirbyPotoStudios 2023"
 horizontal_alignment = 1

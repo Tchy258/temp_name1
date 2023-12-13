@@ -24,7 +24,11 @@ var credits = [
 	{
 		"name": "explosion sfx",
 		"author": "https://www.youtube.com/watch?v=ZuocSHaG7rw"
-	}
+	},
+	{
+		"name": "26 Animated PixelArt Robots",
+		"author": "https://mounirtohami.itch.io/26-animated-pixelart-robots",
+	},
 ]
 
 var staff = [
@@ -54,6 +58,10 @@ var spthanks = [
 	{
 		"name":"Puntitowo",
 		"page":"https://puntitowo.itch.io/"
+	},
+	{
+		"name":"JustCallMeGio",
+		"page":""
 	}
 ]
 var scroll_speed = 1
