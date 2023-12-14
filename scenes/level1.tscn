@@ -3,7 +3,11 @@
 [ext_resource type="Script" path="res://scenes/level1.gd" id="1_bh3wv"]
 [ext_resource type="PackedScene" uid="uid://b3mhsy021dqog" path="res://scenes/player_a.tscn" id="2_y8dpo"]
 [ext_resource type="PackedScene" uid="uid://dh1egp5aes3yp" path="res://scenes/player_b.tscn" id="3_gml5u"]
+
 [ext_resource type="Texture2D" uid="uid://c35atjakkdsil" path="res://assets/tilesets/crystal_tileset.png" id="4_61oi2"]
+
+
+
 [ext_resource type="PackedScene" uid="uid://bwgou5o3u0e6k" path="res://scenes/goal.tscn" id="5_e6v2m"]
 [ext_resource type="Script" path="res://scripts/color_pick_rect.gd" id="6_8f8ko"]
 [ext_resource type="PackedScene" uid="uid://d0apr3wsquoe2" path="res://scenes/parallax_cave.tscn" id="7_gv5ve"]
