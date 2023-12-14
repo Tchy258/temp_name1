@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scenes/level2.gd" id="1_k4jhe"]
 [ext_resource type="PackedScene" uid="uid://b3mhsy021dqog" path="res://scenes/player_a.tscn" id="2_lmdtb"]
 [ext_resource type="PackedScene" uid="uid://dh1egp5aes3yp" path="res://scenes/player_b.tscn" id="3_hayd4"]
-[ext_resource type="Texture2D" uid="uid://cnq3bn7dk6dc5" path="res://assets/tilesets/crystal_tileset.png" id="4_xeuqe"]
+[ext_resource type="Texture2D" uid="uid://c35atjakkdsil" path="res://assets/tilesets/crystal_tileset.png" id="4_xeuqe"]
 [ext_resource type="PackedScene" uid="uid://bwgou5o3u0e6k" path="res://scenes/goal.tscn" id="5_r3sk6"]
 [ext_resource type="Script" path="res://scripts/color_pick_rect.gd" id="6_ro826"]
-[ext_resource type="PackedScene" uid="uid://bvfcvdh844bbe" path="res://scenes/parallax_stage2.tscn" id="7_mybe8"]
+[ext_resource type="PackedScene" path="res://scenes/parallax_stage2.tscn" id="7_mybe8"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7x2bw"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
