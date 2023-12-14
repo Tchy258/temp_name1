@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://t28c4mw1ijrb"]
+
+[ext_resource type="Script" path="res://scenes/ui/how_to_play.gd" id="1_a2lkc"]
+[ext_resource type="Texture2D" uid="uid://d3y41eoi57k4y" path="res://assets/sprites/Instructions - Player 1.png" id="2_86f06"]
+[ext_resource type="Texture2D" uid="uid://g7a31hf76agh" path="res://assets/sprites/Instructions - Player 2 (1).png" id="3_1snu0"]
+[ext_resource type="Texture2D" uid="uid://1t3nxitcre4m" path="res://assets/sprites/Instructions - Player 2 (2).png" id="4_qjs00"]
+
+[node name="HowToPlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a2lkc")
+
+[node name="Inst1" type="Sprite2D" parent="."]
+texture = ExtResource("2_86f06")
+centered = false
+
+[node name="Inst2" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_1snu0")
+centered = false
+
+[node name="Inst3" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_qjs00")
+centered = false
+
+[node name="Next" type="Button" parent="."]
+offset_left = 432.0
+offset_top = 232.0
+offset_right = 464.0
+offset_bottom = 256.0
+text = "Next"
+
+[connection signal="pressed" from="Next" to="." method="_on_next_pressed"]

@@ -1,13 +1,22 @@
 class_name PlayerA
 extends CharacterBody2D
 
-var max_speed = 300
-var jump_speed = 250
-var acceleration = 1500
-var gravity = 450
+const NORMAL_GRAVITY = 1100
+const WIND_GRAVITY = 500
+
+var max_speed = 180
+var jump_speed = 400
+var acceleration = 3300
+var gravity = NORMAL_GRAVITY
 var damage: bool = false
 var in_wind:bool=false
 var wind_velocity:Vector2 = Vector2.ZERO
+var jump_buffer : int = 0
+var coyote_time : int = 10
+var jumping : bool = false
+var falling: bool = false
+var move_dir: int = 0
+var move_changed: bool = false
 @onready var player_camera = $Camera2D
 @onready var pivot = $Pivot
 @onready var player_spr = $Pivot/Sprite2D
@@ -24,33 +33,66 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 #	Debug.dprint(velocity)
+	if jump_buffer > 0:
+		jump_buffer -= 1
+	if coyote_time > 0:
+		coyote_time -= 1
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		animation.travel("jump")
+		if !falling and !jumping:
+			if coyote_time == 0:
+				coyote_time = 8
+				falling = true
+				
+		if Input.is_action_just_pressed("jump"):
+			if !jumping and (coyote_time > 0):
+				jump.rpc()
+				animation.travel("jump")
+				jump_buffer = 0
+				jumping = true
+				coyote_time = 0
+			else:
+				jump_buffer = 8
 	if in_wind:
+		gravity = WIND_GRAVITY
 		velocity.y += wind_velocity.y*delta
+	else:
+		gravity = NORMAL_GRAVITY
 	if is_multiplayer_authority():
 		if !damage:
 			var move_input = Input.get_axis("move_left", "move_right")
+			if (Input.get_action_strength("move_left") == 0) or (Input.get_action_strength("move_right") == 0):
+				move_dir = move_input
+				move_changed = false
+			elif move_dir != 0:
+				if !move_changed:
+					move_dir *= -1
+					move_changed = true
 			if is_on_floor():
-				if is_zero_approx(move_input):
+				if is_zero_approx(move_dir):
 					animation.travel("idle")
-				elif move_input>0.5:
+				elif move_dir>0.5:
 					animation.travel("walk")
-				elif move_input < -0.5:
+				elif move_dir < -0.5:
 					animation.travel("walk")
-			if move_input>0.5:
+				jumping = false
+				falling = false
+				coyote_time = 0
+			if move_dir>0.5:
 				pivot.scale.x=1
-			if move_input < -0.5:
+			if move_dir < -0.5:
 				pivot.scale.x=-1
 				
 				
-			if Input.is_action_just_pressed("jump") and is_on_floor():
+			if (Input.is_action_just_pressed("jump") or jump_buffer > 0) and is_on_floor():
 				jump.rpc()
 				animation.travel("jump")
+				jump_buffer = 0
+				jumping = true
 #				jump()
-			
-			velocity.x = move_toward(velocity.x, (max_speed * move_input) + wind_velocity.x, acceleration * delta)
+			wind_velocity.x = wind_velocity.x * 0.9 if is_on_floor() and in_wind else wind_velocity.x
+			velocity.x = move_toward(velocity.x, (max_speed * move_dir) + wind_velocity.x, acceleration * delta)
 		else:
 			if is_on_floor():
 				velocity.x *= 0.8

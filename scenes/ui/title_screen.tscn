@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://c3haqmqt2v004" path="res://themes/lobby_theme.tres" id="1_7c68r"]
 [ext_resource type="Script" path="res://scenes/ui/title_screen.gd" id="1_re328"]
-[ext_resource type="Texture2D" uid="uid://dm8xtgxnw7tgg" path="res://assets/logo/logo.png" id="2_vmjxl"]
+[ext_resource type="Texture2D" uid="uid://befboocicj5v6" path="res://assets/logo/logo.png" id="2_vmjxl"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -51,5 +51,6 @@ layout_mode = 2
 text = "Exit"
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/HowToPlay" to="." method="_on_how_to_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
