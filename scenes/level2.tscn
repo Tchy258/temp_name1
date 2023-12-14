@@ -647,7 +647,7 @@ size = Vector2(100, 100)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vnwaq"]
 size = Vector2(100, 100)
 
-[node name="Main" type="Node2D"]
+[node name="Main2" type="Node2D"]
 script = ExtResource("1_k4jhe")
 player_a_scene = ExtResource("2_lmdtb")
 player_b_scene = ExtResource("3_hayd4")
